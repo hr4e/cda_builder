@@ -1,0 +1,12 @@
+        <code displayName="Azithromycin 40 MG/ML Oral Suspension" codeSystemName="RxNorm" codeSystem="2.16.840.1.113883.6.88" code="141963">
+            <originalText>azithromycin</originalText>
+        </code>
+          <code displayName="Fluconazole 100 MG Oral Tablet" codeSystemName="RxNorm" codeSystem="2.16.840.1.113883.6.88" code="197698">
+            <originalText>fluconazole</originalText>
+        </code>
+        <code displayName="Ivermectin 3 MG Oral Tablet" codeSystemName="RxNorm" codeSystem="2.16.840.1.113883.6.88" code="311207">
+            <originalText>ivermectin</originalText>
+        </code>
+        <code displayName="Mebendazole 100 MG Chewable Tablet" codeSystemName="RxNorm" codeSystem="2.16.840.1.113883.6.88" code="105347">
+            <originalText>mebendazole</originalText>
+        </code>

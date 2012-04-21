@@ -1,0 +1,91 @@
+<!DOCTYPE html> 
+ 
+<html lang="en"> 
+{% include "header.html" %}
+<style>
+	.ui-autocomplete {
+		max-height: 100px;
+		overflow-y: auto;
+		/* prevent horizontal scrollbar */
+		overflow-x: hidden;
+		/* add padding to account for vertical scrollbar */
+		padding-right: 20px;
+	}
+	/* IE 6 doesn't support max-height
+	 * we use height instead, but this forces the menu to always be this tall
+	 */
+	* html .ui-autocomplete {
+		height: 100px;
+	}
+	</style>
+	<script>
+	$(function() {
+		var availableTags = [
+			"ActionScript",
+			"AppleScript",
+			"Asp",
+			"BASIC",
+			"C",
+			"C++",
+			"Clojure",
+			"COBOL",
+			"ColdFusion",
+			"Erlang",
+			"Fortran",
+			"Groovy",
+			"Haskell",
+			"Java",
+			"JavaScript",
+			"Lisp",
+			"Perl",
+			"PHP",
+			"Python",
+			"Ruby",
+			"Scala",
+			"Scheme"
+		];
+		patients = [];
+		{% for patient in patients %} 
+			patients.push("{{ patient.name }}");
+		{% endfor %}
+		$( "#tags" ).autocomplete({
+			source: patients
+		});
+	});
+	</script>
+
+
+	
+
+
+
+
+
+
+
+<body>
+
+{% include "navigation.html" %}
+<section>	
+<div>
+It is now: <br/>
+{{ now }}<br/>
+<br/>
+{{ hello }}
+</div>
+
+</section> 
+<section>
+<div class="demo">
+
+<div class="ui-widget">
+	<label for="tags">Tags: </label>
+	<input id="tags" />
+</div>
+
+</div><!-- End demo -->
+</section>
+ 
+</body> 
+</html>
+

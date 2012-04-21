@@ -1,0 +1,217 @@
+<!DOCTYPE html> 
+ 
+<html lang="en"> 
+{% include "header.html" %}
+
+<body>
+{% include "options.html" %}
+{% include "navigation.html" %}
+
+	<div id="add_header_section_dialog" title="Enter section title">
+			
+			<form>
+				<fieldset class="ui-helper-reset">
+					<label for="header_tab_title">Title</label>
+					<input type="text" name="header_tab_title" id="header_tab_title" value="" class="ui-widget-content ui-corner-all" />
+				
+				</fieldset>
+			</form>
+	</div>
+	<div id="add_header_tag_dialog" title="Enter Tag Element">
+			
+			<form>
+				<fieldset class="ui-helper-reset">
+					<label for="header_tag_title">Title</label>
+					<input type="text" name="header_tag_title" id="header_tag_title" value="" class="ui-widget-content ui-corner-all" />
+					<label for="header_title_choice">Section</label>
+					<select name="header_title_choice" id="header_title_choice" class="ui-widget-content ui-corner-all">
+					</select>
+				</fieldset><br class="clear" />
+				<div class="header_attributes">
+					<fieldset class="ui-helper-reset">
+						<ul>
+						</ul>
+				</fieldset>
+				</div>
+			</form>
+			<button id ="add_header_attribute">Add Attribute</button>
+	</div>
+	<div id="add_body_section_dialog" title="Enter body section title">
+			<form>
+				<fieldset class="ui-helper-reset">
+					<label for="body_tab_title">Title</label>
+					<input type="text" name="body_tab_title" id="body_tab_title" value="" class="ui-widget-content ui-corner-all" />
+				
+				</fieldset>
+			</form>
+	</div>
+	<div id="add_body_tag_dialog" title="Enter Tag Element">
+			<form>
+				<fieldset class="ui-helper-reset">
+					<label for="body_tag_title">Title</label>
+					<input type="text" name="body_tag_title" id="body_tag_title" value="" class="ui-widget-content ui-corner-all" />
+					<label for="body_title_choice">Section</label>
+					<select name="body_title_choice" id="body_title_choice" class="ui-widget-content ui-corner-all">
+					</select>
+				</fieldset><br class="clear" />
+				<div class="body_attributes">
+					<fieldset class="ui-helper-reset">
+						<ul>
+
+						</ul>
+				</fieldset>
+				</div>
+			</form>
+			<button id ="add_body_attribute">Add Attribute</button>
+	</div>
+
+
+	
+
+<!-- Add | Edit the new CDA Document -->
+<section class ="document_container">
+<h1>Basic Document Information</h1>
+<div class = "add_document">
+	<p class="validateTips">This assumes you have working knowledge of xml namespaces. <br/>All form fields are required.</p>
+	<p></p>
+	<form>
+				<div class="document_name">
+					<form>
+						<fieldset class="ui-helper-reset">
+							<label for="doc_name_title">Document Name</label>
+							<input type="text" name="doc_name_title" id="doc_name_title" value="{{ theMaster.namer }}" class="ui-widget-content ui-corner-all" />
+						</fieldset><br class="clear" />
+					
+					</form>	
+				</div>
+				<br/>
+				<div class="namespaces">
+				<p>
+					<strong>Namespace(s)</strong><br/>
+				</p>
+				<fieldset>
+					<ul>
+					{% for namespace in theMaster.namespaces %}
+						<li>
+						<input type ="text" name="namespace-{{forloop.counter}}" id="namespace" value="{{namespace}}" class="text ui-widget-content ui-corner-all">
+						<span class="ui-icon ui-icon-close">Remove Namespace</span>
+						</li>
+					{% endfor %}
+					</ul>
+				
+					
+				
+				</fieldset>
+				</div>
+				<br/>
+				
+			</form>
+<button id ="add_namespace">Add a Namespace</button>
+<br class="clear" /><br class="clear" />
+<br/><br/><br/>
+</div>
+</section>
+<br class="clear" />
+
+
+
+
+<section class ="document_container">
+
+	<h1>Document Header</h1>
+	<br class="clear" />
+	<div class = "document_header">
+		<button id ="add_header_section">Add a new section</button><button id ="add_header_tag">Add a new tag</button>
+		<div id ="header_tabs">
+			<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+				{% for section in theMaster.getHeaderSections %}
+					{% if forloop.first %}
+						<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active">
+							<a href="#tabs-{{section}}">{{ section }} </a>
+							<span class="ui-icon ui-icon-close">Remove Tab</span>
+						</li>
+					{% else %}
+						<li class="ui-state-default ui-corner-top">
+							<a href="#tabs-{{section}}">{{ section }} </a>
+							<span class="ui-icon ui-icon-close">Remove Tab</span>
+						</li>
+					{% endif %}
+				{% endfor %}
+		
+			</ul>
+			{% for section in theMaster.getHeaderSections %}
+				<div id = "tabs-{{section}}" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+					<ol class="sortable ui-sortable"></ol>
+				</div>
+			{% endfor %}
+	
+		</div> <!-- end tabs -->
+		<br class="clear" />
+		
+	</div> <!-- End Document Header -->
+</section> 
+<br class="clear" />
+
+
+
+
+
+
+
+
+<!--
+You might have to generate a button in the tab-i id
+and find its parent to append a new tag...fudge.
+-->
+
+
+
+
+
+<section class ="document_container">
+<h1>Document Body</h1>
+	<br class="clear" />
+	<div class = "document_body">
+		<button id ="add_body_section">Add a new section</button><button id ="add_body_tag">Add a new tag</button>
+		<div id ="body_tabs">
+			<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+				{% for section in theMaster.getBodySections %}
+					{% if forloop.first %}
+						<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active">
+							<a href="#tabs-{{section}}">{{ section }} </a>
+							<span class="ui-icon ui-icon-close">Remove Tab</span>
+						</li>
+					{% else %}
+						<li class="ui-state-default ui-corner-top">
+							<a href="#tabs-{{section}}">{{ section }} </a>
+							<span class="ui-icon ui-icon-close">Remove Tab</span>
+						</li>
+					{% endif %}
+				{% endfor %}
+		
+			</ul>
+			{% for section in theMaster.getBodySections %}
+				<div id = "tabs-{{section}}" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+					<ol class="sortable ui-sortable"></ol>
+				</div>
+			{% endfor %}
+	
+		</div> <!-- end tabs -->
+		<br class="clear" />
+	</div>
+</section> 
+
+	
+<!-- 
+Okay, this will be the form to add a new CDA Form to the set.
+I am using JQuery validation and Django newforms to collect
+the namespace. The namespace button has to be outside of the POST.
+Are the components in the same post as the header info? Different?
+<greenCCD xmlns="AlschulerAssociates::GreenCDA" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hr4e="hr4e::patientdata" 
+		  xsi:schemaLocation="AlschulerAssociates::GreenCDA green_ccd.xsd">
+<br class="clear" />
+-->
+{% include "footer.html" %}
+</body> 
+</html>
+

@@ -1,0 +1,96 @@
+.extruded {
+    color: #FFF;
+    font-family: 'Helvetica Neue', Arial, sans-serif; 
+/* the original site doesn't use the @font-face attribute */
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: #1A5573 1px 1px, #1A5573 2px 2px, #1A5573 3px 3px;
+    position: relative;
+    -moz-transition: all 0.3s ease-out; /* FF3.7+ */
+       -o-transition: all 0.3s ease-out; /* Opera 10.5 */
+  -webkit-transition: all 0.3s ease-out; /* Saf3.2+, Chrome */
+          transition: all 0.3s ease-out;
+}
+
+.extruded:hover {
+    color: #FFF;
+    text-shadow: #1A5573 1px 1px, #1A5573 2px 2px, #1A5573 3px 3px, #1A5573 4px 4px, #1A5573 5px 5px, #1A5573 6px 6px;
+    left: -6px;
+    top: -6px;
+    /*text-outline: 2px #FFF;*/
+    /*text-shadow: black 0.1em 0.1em 0.2em*/
+}
+
+.superextruded {
+    color: #FFF;
+    font-family: 'Helvetica Neue', Arial, sans-serif; 
+/* the original site doesn't use the @font-face attribute */
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: #1A5573 1px 1px, #1A5573 2px 2px, #1A5573 3px 3px;
+    position: relative;
+    -moz-transition: all 0.3s ease-out; /* FF3.7+ */
+       -o-transition: all 0.3s ease-out; /* Opera 10.5 */
+  -webkit-transition: all 0.3s ease-out; /* Saf3.2+, Chrome */
+          transition: all 0.3s ease-out;
+}
+
+
+.superextruded:hover {
+    color: #FFF;
+    text-shadow: #1A5573 1px 1px, #1A5573 2px 2px, #1A5573 3px 3px, #1A5573 4px 4px, #1A5573 5px 5px, #1A5573 6px 6px;
+    left: -6px;
+    top: -6px;
+    /*text-outline: 2px #FFF;*/
+    /*text-shadow: black 0.1em 0.1em 0.2em*/
+}
+
+nav.main_header
+{
+	background-color: #0073EA;
+	height:125px;
+	width:1020px;
+	box-shadow:		1px 1px 8px #444;
+	-mox-box-shadow:	1px 1px 8px #444;
+	-webkit-box-shadow:	1px -1px 8px #444;
+}
+
+nav ul 
+{  
+    margin: 40px auto;  
+    list-style: none;
+	width:1020px; 
+	
+}
+
+nav
+{
+	
+	width:1020px;
+}
+
+nav ul li 
+{  
+    float: left;  
+	
+}  
+  
+nav ul li a 
+{  
+	display: block;  
+	margin-right: 60px;  
+	width: 180px;  
+	font-size: 14px;  
+	line-height: 30px;
+	text-align: left;  
+	text-decoration: none;  
+	color: #777;  
+}  
+  
+nav ul li a:hover {  
+    color: #fff;  
+}  
+  
+nav ul li.selected a {  
+    color: #fff;  
+}  

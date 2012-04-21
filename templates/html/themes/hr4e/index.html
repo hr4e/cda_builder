@@ -1,0 +1,302 @@
+<!DOCTYPE html> 
+ 
+<html lang="en"> 
+<head> 
+<meta charset="utf-8" /> 
+<!--[if lt IE 9]>
+<script src="/static/js/html5.js"></script>
+<![endif]--> 
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>{{ clinic.name }}</title>
+	<meta name="description" content="Some Title for your Application">
+	<meta name="author" content="UCSC">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+   	<!--link rel="shortcut icon" href="static/favicon.ico" > 
+   	<!--script type="text/javascript" src="/static/js/jquery.min.js"></script> 
+    	<!--script type="text/javascript" src="/static/js/hr4e.js"></script> 
+	<script type="text/javascript" src="/static/js/jquery-1.7.1.min.js"></script> -->
+    	<link rel="stylesheet" type="text/css" href="/../../../../static/css/hr4e_theme.css" />
+	<script type="text/javascript" src="/../../../../static/js/jquery.min.js"></script> 
+	<script type="text/javascript" src="/../../../../static/js/jquery-ui-1.8.18.custom.min.js"></script>
+	<script type="text/javascript" src="/../../../../static/js/jquery.ui.nestedSortable.js"></script>
+	
+	<link type="text/css" href="/../../../../static/css/flick/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
+
+	<script>
+		$(document).ready(function(){
+			
+			var last_visited_x = 0;
+			var last_visited_y = 0;
+	
+			function resetContainers() {
+				//alert("Resetting");
+				var browserWidth = $(window).width();
+				var browserHeight = $(window).height();
+		
+				//times 3 needs to be the number of stations...
+				// {{clinic.stations.len}}
+				$('#all_the_candy').css({
+					width: browserWidth*4,
+				});
+		
+		
+				$('.box').css({
+					width: browserWidth,
+					height: browserHeight,
+				});
+		
+			}
+			
+			//yeah...we are going to do this differently!
+			$("#tabs").tabs({
+				fillspace:true
+			});
+
+			$("#tabs_2").tabs({
+				fillspace:true
+			});
+
+			$("#tabs_3").tabs({
+				fillspace:true
+			});
+
+			$("#tabs_4").tabs({
+				fillspace:true
+			});
+
+
+			$( "#save_patient" )
+				.button({ icons: { primary: "ui-icon-disk" }})
+				.click(function() {
+					alert("Hello");
+			});
+
+		
+			//the load should load this URL html?clinic=hr4e
+
+		
+			$( "#load_patient" )
+				.button({ icons: { primary: "ui-icon-refresh" }})
+				.click(function() {
+					alert("Hello");
+			});
+
+		
+			
+			resetContainers();
+		
+			$(window).resize(function() {
+				resetContainers();
+				//alert("fudge");
+				goTo(last_visted_x,last_visited_y);
+			});
+
+
+			$('nav ul li a').click(function(){
+				return false;
+			});
+
+			function goTo(horizontal,vertical) {
+
+				var browserWidth = $(window).width();
+				var browserHeight = $(window).height();
+
+				$('#all_the_candy').animate({
+					marginLeft: '-'+browserWidth*horizontal,
+					marginTop: '-'+browserHeight*vertical,
+				}, 1000);
+	
+			}
+			goTo(0,0);
+
+
+			//foreach station in clinic: make each station's click function...
+			//you only want to go across the x axis for these...
+			$('#Intake a').click(function(){
+				goTo(0,0);
+				last_visted_x = 0;
+				last_visited_y = 0;
+			});
+
+			$('#Triage a').click(function(){
+				goTo(1,0);
+				last_visted_x = 1;
+				last_visited_y = 0;
+			});
+
+			$('#Pharmacy a').click(function(){
+				goTo(2,0);
+				last_visted_x = 2;
+				last_visited_y = 0;
+			});
+
+			$('#Lab a').click(function(){
+				goTo(3,0);
+				last_visted_x = 3;
+				last_visited_y = 0;
+			});
+			
+			
+
+		
+		});
+	</script>
+	
+</head>
+<body>
+<div id="save_options">
+	
+	<ul class="save_bmenu">
+			<li><button id ="save_patient">Save Patient</button></li>
+			<li><button id ="load_patient">Load Patient</button></li>
+	</ul>
+</div> 
+<div id="options">
+	<ul class="bmenu">
+			<li id = "Intake"><a href="#"><strong>Intake</strong></a></li>
+		   	<li id = "Triage"><a href="#"><strong>Triage</strong></a></li>
+			<li id = "Pharmacy"><a href="#"><strong>Pharmacy</strong></a></li>
+			<li id = "Lab"><a href="#"><strong>Lab</strong></a></li>
+	</ul>
+</div> 
+<!--
+******************************************************************************
+*******************************************************************************
+
+-->
+<div id = "all_the_candy">
+
+<section id="intake" class="box">
+<br class="clear" /><br class="clear" /><br class="clear" />
+<div id ="page_container">
+	<h2 class="title">{{ clinic.name }} Clinic Name : Intake Station</h2>
+	<br class="clear" />
+	
+		<div class="content" id="home_content">
+			<div id="tabs">
+				<ul>
+					<li><a href="#tabs-1">Demographics</a></li>
+					<li><a href="#tabs-2">Nutrition</a></li>
+					<li><a href="#tabs-3">Photograph</a></li>
+					<li><a href="#tabs-4">Checkout</a></li>
+				</ul>
+
+				<div id="tabs-1">
+					<p>Demographics Widget Form</p>	
+				</div>
+
+				<div id="tabs-2">
+					<p>Nutrition</p>
+				</div>
+
+				<div id="tabs-3">
+					<p>Photograph Section</p>
+				</div>
+				<div id="tabs-4">
+					<p>Checkout Section</p>
+				</div> 
+			</div> <!--End Sections Div -->
+		
+	</div>
+</div>
+</section>
+
+
+<section id="triage" class="box">
+
+	<br class="clear" /><br class="clear" /><br class="clear" />
+	<div id ="page_container">
+	<h2 class="title">{{ clinic.name }} Clinic Name : Triage Station</h2>
+	<br class="clear" />
+	
+		<div class="content" id="home_content">
+			<div id="tabs_2">
+				<ul>
+					<li><a href="#tabs-1">Red Flags</a></li>
+					<li><a href="#tabs-2">Something</a></li>
+				</ul>
+
+				<div id="tabs-1">
+					<p>Red Flags Form</p>	
+				</div>
+
+				<div id="tabs-2">
+					<p>Something Form</p>
+				</div>
+
+				
+			</div> <!--End Sections Div -->
+		
+	</div>
+</div>
+</section>
+
+<!--
+******************************************************************************
+*******************************************************************************
+
+-->
+<section id="pharmacy" class="box">
+
+<br class="clear" /><br class="clear" /><br class="clear" />
+<div id ="page_container">
+	<h2 class="title">{{ clinic.name }} Clinic Name</h2>
+	<br class="clear" />
+	
+		<div class="content" id="home_content">
+			<div id="tabs_3">
+				<ul>
+					<li><a href="#tabs-1">Demographics</a></li>
+					<li><a href="#tabs-2">Nutrition</a></li>
+					
+				</ul>
+
+				<div id="tabs-1">
+					<p>Widget form</p>	
+				</div>
+
+				<div id="tabs-2">
+					<p>Wdiget Form</p>
+				</div>
+
+				</div> 
+			</div> <!--End Sections Div -->
+		
+	</div>
+</div>
+</section>
+<!--
+******************************************************************************
+*******************************************************************************
+
+-->
+<section id="lab" class="box">
+<br class="clear" /><br class="clear" /><br class="clear" />
+<div id ="page_container">
+	<h2 class="title">{{ clinic.name }} Clinic Name : Lab Station</h2>
+	<br class="clear" />
+	
+		<div class="content" id="home_content">
+			<div id="tabs_4">
+				<ul>
+					<li><a href="#tabs-1">Section</a></li>
+					<li><a href="#tabs-2">Section</a></li>
+				</ul>
+
+				<div id="tabs-1">
+					<p>Widget form</p>	
+				</div>
+
+				<div id="tabs-2">
+					<p>Wdiget Form</p>
+				</div>
+			</div> <!--End Sections Div -->
+		
+	</div>
+</div>
+</section>
+</div><!-- End all of the candy -->
+</body> 
+
+</html>

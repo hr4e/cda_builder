@@ -1,0 +1,192 @@
+<!DOCTYPE html> 
+ 
+<html lang="en"> 
+{% include "header.html" %}
+
+<body>
+
+{% include "navigation.html" %}
+<section>	
+<div>
+It is now: <br/>
+{{ now }}<br/>
+<br/>
+{{ hello }}<br/>
+{{ message }}
+</div>
+
+</section> 
+
+
+	<script>
+	$(function() {
+		// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
+		$( "#dialog:ui-dialog" ).dialog( "destroy" );
+		
+		var doc_name = $( "#doc_name" ),
+			namespace = $( "#namespace" ),
+			//password = $( "#password" ),
+			allFields = $( [] ).add( doc_name ).add( namespace ),
+			tips = $( ".validateTips" );
+
+		function updateTips( t ) {
+			tips
+				.text( t )
+				.addClass( "ui-state-highlight" );
+			setTimeout(function() {
+				tips.removeClass( "ui-state-highlight", 1500 );
+			}, 500 );
+		}
+
+		function checkLength( o, n, min, max ) {
+			if ( o.val().length > max || o.val().length < min ) {
+				o.addClass( "ui-state-error" );
+				updateTips( "Length of " + n + " must be between " +
+					min + " and " + max + "." );
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		function checkRegexp( o, regexp, n ) {
+			if ( !( regexp.test( o.val() ) ) ) {
+				o.addClass( "ui-state-error" );
+				updateTips( n );
+				return false;
+			} else {
+				return true;
+			}
+		}
+		$(function() 
+		{
+			$( "input:submit", ".demo" ).button();
+		});
+		
+		$( "#dialog-form" ).dialog({
+			autoOpen: false,
+			height: 300,
+			width: 350,
+			modal: true,
+			//buttons: {
+				//"Create a Document": function() {
+					//var projects =
+						//{
+						//	document_name: doc_name.val(),
+						//	namespace_name: namespace.val(),
+						//}//
+					
+					//var bValid = true;
+					//allFields.removeClass( "ui-state-error" );
+					//bValid = bValid && checkLength( name, "name", 3, 16 );
+					//bValid = bValid && checkLength( namespace, "namespace", 6, 80 );
+					//bValid = bValid && checkRegexp( name, /^[a-z]([0-9a-z_])+$/i, "Document Name peut utilise a-z, 0-9, underscores, begin with a letter." );
+					/*$( "#documents tbody" ).append( "<tr>" +
+							"<td>" + doc_name.val() + "</td>" + 
+							"<td>" + namespace.val() + "</td>" + 
+							"<td>" + "False" + "</td>" +
+							"<td>" + "NA" + "</td>" +
+						"</tr>" ); 
+						$( this ).dialog( "close" );
+					//alert(doc_name.val());
+					//var daata = [doc_name.val(),namespace.val()];
+					$.ajax({
+						type: "POST",
+						url: "http://127.0.0.1:8000/cda_builder/all_cda.html",
+						data: projects
+						});
+					//alert("After Ajax");
+					$( this ).dialog( "close" );
+					
+				},
+				Cancel: function() {
+					$( this ).dialog( "close" );
+				},*/
+				//Cancel: function() {
+				//	$( this ).dialog( "close" );
+				//}
+			//},
+			close: function() {
+				allFields.val( "" ).removeClass( "ui-state-error" );
+			}
+		});
+
+		$( "#create-document" )
+			.button()
+			.click(function() {
+				$( "#dialog-form" ).dialog( "open" );
+			});
+	});
+	</script>
+
+
+
+<div class="demo">
+
+<div id="dialog-form" title="Create New Document">
+	<p class="validateTips">All form fields are required.</p>
+
+	<form action="" method ="POST">
+	<fieldset>
+		<label for="doc_name">Name</label>
+		<input type="text" name="doc_name" id="doc_name" class="text ui-widget-content ui-corner-all" />
+		<label for="namespace">Namespace</label>
+		<input type="text" name="namespace" id="namespace" value="" class="text ui-widget-content ui-corner-all" />
+		<br/><br/>
+		<input type="submit" id="add_cda_document" name="add_cda" value="Add Document">
+	</fieldset>
+		
+	</form>
+</div>
+<!--<form action="" method ="POST">
+				<ul>
+				{% for field in add_document %}
+	       				<li>
+		    				{% if field.errors %}<font color="red"> {{ field.errors }} </font>{% endif %}
+		    				<strong>{{ field.label_tag }}:</strong><br/> {{ field }}
+					</li>
+	    			{% endfor %}
+				<ul>
+				<br/>
+				<div>
+				<input type="submit" name="add_cda" value="Add CDA" />	
+				
+				</div>
+			</form>-->
+
+<div id="documents-contain" class="ui-widget">
+	<h1>Existing Documents</h1>
+	<table id="documents" class="ui-widget ui-widget-content">
+		<thead>
+			<tr class="ui-widget-header ">
+				<th>Name</th>
+				<th>Namespace(s)</th>
+				<th>Valid</th>				
+				<th>Date Created</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for cda in cdas %}
+			<tr>
+				<td>{{ cda.name }}</td>
+				<td>{{ cda.namespace }}</td>
+				<td>{{ cda.is_valid }}</td>
+				<td>{{ cda.date_created }}</td>
+			</tr>
+		{% endfor %}
+			
+		</tbody>
+	</table>
+</div>
+<button id="create-document">create new document</button>
+
+</div><!-- End demo -->
+
+
+
+
+
+ 
+</body> 
+</html>
+

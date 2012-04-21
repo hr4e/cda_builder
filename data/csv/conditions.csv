@@ -1,0 +1,4 @@
+id,timestamp,familyname,givenname,estimatedage,chiefcomplaint
+2.16.840.1.113883.3.881.3774976330,20111021505350+0800,Gainer,Alex,09Y 06M,asdf : asdf
+2.16.840.1.113883.3.881.3774976330,20111021601058+0800,Gainer,Alex,00,Fever : asdf
+2.16.840.1.113883.3.881.3774976330,20111021601058+0800,Gainer,Alex,00,asdf : asdf

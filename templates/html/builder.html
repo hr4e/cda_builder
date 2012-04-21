@@ -1,0 +1,49 @@
+<!DOCTYPE html> 
+ 
+<html lang="en"> 
+{% include "header.html" %}
+
+<body>
+
+{% include "navigation.html" %}
+<section>	
+<div>
+It is now: <br/>
+{{ now }}<br/>
+<br/>
+{{ hello }}
+</div>
+
+</section> 
+
+<section id="demo"> 
+	<ol class="sortable"> 
+		<li id="list_1"><div>Item 1</div> 
+		<li id="list_2"><div>Item 2</div> 
+		<li id="list_3"><div>Item 3</div> 
+		<li id="list_4"><div>Item 4</div> 
+	</ol> 
+ 
+	<h3>Try the custom methods:</h3> 
+ 
+	<p><br /> 
+		<input type="submit" name="serialize" id="serialize" value="Serialize" /> 
+	<pre id="serializeOutput"></pre> 
+ 
+	<p> 
+		<input type="submit" name="toArray" id="toArray" value="To array" /> 
+	<pre id="toArrayOutput"></pre> 
+ 
+	<p> 
+		<input type="submit" name="toHierarchy" id="toHierarchy" value="To hierarchy" /> 
+	<pre id="toHierarchyOutput"></pre> 
+	
+</section> <!-- END #demo --> 
+
+
+
+
+ 
+</body> 
+</html>
+

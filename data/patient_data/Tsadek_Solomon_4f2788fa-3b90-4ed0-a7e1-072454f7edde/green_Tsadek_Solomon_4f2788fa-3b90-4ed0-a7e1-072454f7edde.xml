@@ -1,0 +1,263 @@
+<!--HR4E patient data template, based on greenCCD.xml from Alschuler Associates --><!-- We will validate ourselves against the greenCCD.xsd produced by Alschuler 
+	Associates. We can keep a local copy of the schema. The original was downloaded 
+	from the GreenCDA project page on HL7: http://wiki.hl7.org/index.php?title=GreenCDA_Project. 
+	From that page, download and unzip CDAR2_IG_GREENMOD4CCD_R1_I1_2010SEP.zip 
+	We use 3 namespaces: default is AlschulerAssociates xsi prefix is for XML 
+	schema tags hr4e prefix for hr4e extensions to the default model. hr4e is 
+	a placeholder, can change it if needed. --><greenCCD xmlns="AlschulerAssociates::GreenCDA" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hr4e="hr4e::patientdata" xsi:schemaLocation="AlschulerAssociates::GreenCDA green_ccd.xsd">
+	
+	<!-- Header information. This information applies to the entire document. -->
+	<header>
+
+		<documentID root="4f2788fa-3b90-4ed0-a7e1-072454f7edde"/>
+
+		<!-- Title is required, but a fixed value for all HR4E instances. -->
+		<title>Health Records for Everyone Continuity of Care Document</title>
+		<version>
+			<number>1</number>
+		</version>
+		<confidentiality codeSystem="2.16.840.1.113883.5.25" code="N"/>
+
+		<documentTimestamp value="20110517130000+0800"/>
+		<personalInformation>
+			<patientInformation>
+				<!-- personID is required and must be unique for each patient instance. 
+					This root contains the prefixe for HR4E; it will need to be appended
+					with a unique identifier for each patient. 
+				-->
+				<personID root="2.16.840.1.113883.3.881.XXX"/>
+				<personAddress>
+					<streetAddressLine nullFlavor="NI"/>
+
+					<!-- Let's use city to record present village -->
+					<city>Yetebon</city>
+					<state nullFlavor="NI"/>
+					<postalCode nullFlavor="NI"/>
+				</personAddress>
+				<personPhone nullFlavor="NI"/>
+				<personInformation>
+					<personName>
+						<given>Solomon</given>
+						<family>Tsadek</family>
+					</personName>
+
+					<!-- The code system is fixed for all HR4E patients. set the code to "M" or "F" -->
+					<gender codeSystem="2.16.840.1.113883.5.1" code="M"/>
+
+					<!-- personDateofBirth is required. Use "NI" if it is not available. -->
+					<personDateOfBirth value="NI"/>
+
+					<!-- HR4E section to record additional age information. -->			
+					 
+				</personInformation>
+
+				<!-- HR4E section to record living situation. -->
+				
+			</patientInformation>
+		</personalInformation>
+		<languagesSpoken>
+			<languageSpoken>
+				<languageCode code="sem-ET"/>
+			</languageSpoken>
+		</languagesSpoken>
+		<supports>
+			<support>
+				<date nullFlavor="NI"/>
+				<contact>
+					<contactAddress>
+						<streetAddressLine nullFlavor="NI"/>
+						<city>Newton</city>
+						<state nullFlavor="NI"/>
+						<postalCode nullFlavor="NI"/>
+					</contactAddress>
+					<contactTelecom nullFlavor="NI"/>
+					<!-- Given the teacher name as the contact name. -->
+					<contactName>
+						<given>Johan</given>
+						<family>Gabre</family>
+					</contactName>
+					<comment>
+						<text>Enter comments here.</text>
+					</comment>
+					<!-- HR4E section to record school name. -->
+					
+				</contact>
+			</support>
+		</supports>
+		<custodian>
+			<custodianID root="0.00.000.00000.00.0"/>
+			<custodianName>Project Mercy</custodianName>
+		</custodian>
+		<healthcareProviders>
+
+			<!-- This should be set to the start and end date of the clinic. -->
+			<careProvisionDateRange>
+				<low value="20110328"/>
+				<high value="20110603"/>
+			</careProvisionDateRange>
+
+			<!-- List of health care providers. -->
+			<healthcareProvider>
+				<role code="AUSC" codeSystem="2.16.840.1.113883.3.881.XXX">
+					<originalText>Scribe</originalText>
+				</role>
+
+				<!-- This date range could be specific for health care provider, if they 
+					did not stay for whole clinic. By default, make it the same as the date range 
+					for the clinic. 
+				-->
+				<dateRange>
+					<low value="20111024"/>
+					<high value="20111104"/>
+				</dateRange>
+
+				<!-- providerEntity is required, it is the organization associated with 
+					the health care provider (HR4E?). This should be the same for all document 
+					instances for a clinic visit. 
+				-->
+				<providerEntity>
+					<!-- providerID is required, and should be a unique identifier for the 
+						organization. It is a UUID in greec_ccd, but I think we should base
+						it off of the HR4E oid. 
+					-->
+					<providerID root="2.16.840.1.113883.3.881.XXX"/>
+					<providerName>
+						<prefix>Dr.</prefix>
+						<given>Bilbo</given>
+						<family>Baggins</family>
+					</providerName>
+					<providerOrganizationName>Friends of Project Mercy</providerOrganizationName>
+				</providerEntity>
+				<comment>
+					<text>Enter comments here.</text>
+				</comment>
+			</healthcareProvider>
+		</healthcareProviders>
+
+		<!-- information source is required, I think. It represents the author 
+			of the document. This will be the person whose role is scribe for the clinic 
+		-->
+		<informationSource>
+			<author>
+				<authorTime value="20110517130000+0800"/>
+				<authorName>
+					<prefix>Dr.</prefix>
+					<given>Sam</given>
+					<family>Gamgee</family>
+				</authorName>
+			</author>
+		</informationSource>
+		
+	 	<!-- We also want to capture information about the clinic site. This should be configured
+	 		 for every mobile clinic trip. 
+ 		-->
+		
+		
+	</header>
+	
+	<!-- Body information.  The sections below must be in this order to validate against greenCCD.xsd -->
+	<body>
+	
+		<!-- Results are a list of the patient's lab results.  It is optional for any patient. -->
+		<results>
+			<result>
+				<!--Every lab must have its own unique UUID.  -->
+				<resultID root="00000000-0000-0000-0000-000000000000"/>
+				<resultDateTime value="20110517130000+0800"/>
+				<resultType codeSystem="2.16.840.1.113883.6.1" code="41144-7" displayName="Orasure"/>
+				
+				<!-- Result Status is required.  We need to find the right context to find valid values for it. -->
+				<resultStatus code="completed"/>
+				
+				<!-- resultValue is optional. physicalQuantity allows for results to be expressed in different units. -->
+				<resultValue>
+					<physicalQuantity value="13.2" unit="g/dl"/>
+				</resultValue>
+				<resultInterpretation codeSystem="2.16.840.1.113883.5.83" code="N"/>
+				
+				<!-- Result range will need be be configured on a per clinic basis for each lab. -->
+				<resultReferenceRange>M 13-18 g/dl; F 12-16 g/dl</resultReferenceRange>
+				<comment>
+					<text>Enter comments here.</text>
+				</comment>
+			</result>
+		<result><resultID root="8c6632ec-3389-4950-9604-80cb003a11c6"/><resultDateTime value="01/2009"/><resultType code="41144-7" displayName="Orasure" codeSystem="2.16.840.1.113883.5.83"/><resultStatus code="completed"/><resultValue><physicalQuantity unit="NI" value="Positive"/></resultValue><resultReferenceRange>M 13-18 g/dl; F 12-16 g/dl</resultReferenceRange><comment><text>Test Result</text></comment></result><result><resultID root="e9753176-5e7a-4611-b0f3-c4d7d274fe1e"/><resultDateTime value="01/2009"/><resultType code="718-7" displayName="Hemoglobin" codeSystem="2.16.840.1.113883.5.83"/><resultStatus code="completed"/><resultValue><physicalQuantity unit="NI" value="10"/></resultValue><resultReferenceRange>M 13-18 g/dl; F 12-16 g/dl</resultReferenceRange><comment><text>Test Result</text></comment></result><result><resultID root="9a2c9a07-0454-4dcc-b696-3e2a843ac0f7"/><resultDateTime value="01/2009"/><resultType code="10701-1" displayName="Stool O&amp;P Status" codeSystem="2.16.840.1.113883.5.83"/><resultStatus code="completed"/><resultValue><physicalQuantity unit="NI" value="Normal"/></resultValue><resultReferenceRange>M 13-18 g/dl; F 12-16 g/dl</resultReferenceRange><comment><text>Ascaris,Entamoeba</text></comment></result></results>
+		<encounters>
+			<encounter>
+				<!-- We will need to generate a unique id for every encounter of every patient.  It is a UUID. -->
+				<encounterID root="d73f1240-6adc-4ed2-a39d-de24e3015c77"/>
+				<encounterType codeSystem="2.16.840.1.113883.5.4" code="FLD">
+					<originalText>General Checkup</originalText>
+				</encounterType>
+				<encounterDateTime value="20111012164623+0800"/>
+				<reasonForVisit>Smells funny, lice<text>Enter the patient's chief complaint here.</text>
+					<reason code="NI"/>
+				</reasonForVisit>
+		   		
+			</encounter>
+		</encounters>
+		
+		<!-- Medications are a list of the patient's medications.  It is optional for a given patient. -->
+		<medications>
+			<medication>
+				<medicationInformation>
+					<codedProductName codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm" displayName="Ivermectin" code="311207"/>
+					<freeTextProductName>Ivermectin 3 MG Oral Tablet</freeTextProductName>
+				</medicationInformation>
+			</medication>
+		</medications>
+		<immunizations>
+			<immunization>
+				<administeredDate value="201104"/>
+				<medicationInformation>
+					<codedProductName codeSystem="2.16.840.1.113883.6.59" displayName="Measles" code="90705"/>
+					<freeTextProductName>Measles vaccine</freeTextProductName>
+				</medicationInformation>
+				<comment>
+					<text>Enter comments here.</text>
+				</comment>
+			</immunization>
+		<immunization><administeredDate value="06/2010"/><medicationInformation><codedProductName code="90712" displayName="BCG, OPV-O" codeSystem="2.16.840.1.113883.6.59"/><freeTextProductName>BCG, OPV-O</freeTextProductName></medicationInformation><comment><text>Immunization</text></comment></immunization><immunization><administeredDate value="07/2010"/><medicationInformation><codedProductName code="90701" displayName="DPT-1,OPV-1,HBV-1" codeSystem="2.16.840.1.113883.6.59"/><freeTextProductName>DPT-1,OPV-1,HBV-1</freeTextProductName></medicationInformation><comment><text>Immunization</text></comment></immunization></immunizations>
+		<vitalSigns>
+			<vitalSign>
+			
+				<!-- A new UUID must be generated for each vital sign instance. -->
+				<resultID root="00000000-0000-0000-0000-000000000000"/>
+				<resultDateTime value="19991114"/>
+				<resultType codeSystem="2.16.840.1.113883.6.1" displayName="Temperature" code="18688-2"/>
+				<resultStatus code="completed"/>
+				<resultValue>
+					<physicalQuantity value="177" unit="cm"/>
+				</resultValue>
+				
+				<resultInterpretation codeSystem="2.16.840.1.113883.5.83" code="N"/>
+				
+				<!-- Result range will need be be configured on a per clinic basis for each lab. -->
+				<resultReferenceRange>M 13-18 g/dl; F 12-16 g/dl</resultReferenceRange>
+				<comment>
+					<text>Enter comments here.</text>
+				</comment>
+			</vitalSign>
+		<vitalSign><resultID root="ec937a72-a2c5-40b9-8e72-144adb78dcb4"/><resultDateTime value="20111012164623+0800"/><resultType code="41909-3" displayName="BMI" codeSystem="2.16.840.1.113883.6.96"/><resultStatus code="completed"/><resultValue><physicalQuantity unit="NI" value="22"/></resultValue><comment><text>Intake Vitals</text></comment></vitalSign><vitalSign><resultID root="2a3fd66d-af8a-4101-81e0-3b5dfe00442b"/><resultDateTime value="20111012164623+0800"/><resultType code="NI" displayName="Z-Score" codeSystem="2.16.840.1.113883.6.96"/><resultStatus code="completed"/><resultValue><physicalQuantity unit="NI" value="-1"/></resultValue><comment><text>Intake Vitals</text></comment></vitalSign><vitalSign><resultID root="cc7caab8-f2d1-4f0e-b436-61278a1867c5"/><resultDateTime value="20111012164623+0800"/><resultType code="46039-4" displayName="Body Height" codeSystem="2.16.840.1.113883.6.96"/><resultStatus code="completed"/><resultValue><physicalQuantity unit="cm" value="80"/></resultValue><comment><text>Intake Vitals</text></comment></vitalSign><vitalSign><resultID root="ece1b55b-b385-4004-9d37-82a9d86283fb"/><resultDateTime value="20111012164623+0800"/><resultType code="46039-4" displayName="Body Weight" codeSystem="2.16.840.1.113883.6.96"/><resultStatus code="completed"/><resultValue><physicalQuantity unit="kg" value="14.5"/></resultValue><comment><text>Intake Vitals</text></comment></vitalSign><vitalSign><resultID root="2e06cf16-b63b-4f7c-954f-74cf7777a271"/><resultDateTime value="20111012164623+0800"/><resultType code="11948-7" displayName="P" codeSystem="2.16.840.1.113883.6.96"/><resultStatus code="completed"/><resultValue><physicalQuantity unit="NI" value="20P"/></resultValue><comment><text>Intake Vitals</text></comment></vitalSign><vitalSign><resultID root="1616d5db-b891-41cd-bb96-e2d0e673b597"/><resultDateTime value="20111012164623+0800"/><resultType code="18684-1" displayName="BP" codeSystem="2.16.840.1.113883.6.96"/><resultStatus code="completed"/><resultValue><physicalQuantity unit="NI" value="30BP"/></resultValue><comment><text>Intake Vitals</text></comment></vitalSign></vitalSigns>
+		<conditions>
+			<condition>
+				<problemDate>
+					<low value="2011"/>
+				</problemDate>
+				<problemName> Enter condition here</problemName>
+				<problemCode code="000" codeSystem="2.16.840.1.113883.6.103" displayName=""/>
+				<comment>
+					<text>Enter comments here.</text>
+				</comment>
+			</condition>
+		<condition><problemDate><low value="2011"/></problemDate><problemName>Diarrhea</problemName><problemCode code="V70.6" displayName="Assessments" codeSystem="2.16.840.1.113883.6.103"/><comment><text>all the time</text></comment></condition></conditions>
+		<planOfCare>
+			<plannedObservation>
+				<!--  We will need to generate a unique ID for each plan of care item.  This is a UUID -->
+				<planId root="00000000-0000-0000-0000-000000000000"/>
+				<planType code="NI" codeSystem="NI" displayName="NI"/>
+				<planFreeText>Add description of follow up care here. </planFreeText>
+			</plannedObservation>
+		<plannedObservation><planID root="5967a9b6-01dc-4317-9a67-f4e942d7649e"/><planType code="NI" displayName="Ivermectin 3 MG Oral Tablet" codeSystem="NI"/><planFreeText>Hi</planFreeText></plannedObservation></planOfCare>
+	</body>
+</greenCCD>

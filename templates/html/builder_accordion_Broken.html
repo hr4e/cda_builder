@@ -1,0 +1,158 @@
+<!DOCTYPE html> 
+ 
+<html lang="en"> 
+{% include "header.html" %}
+
+<body>
+
+{% include "navigation.html" %}
+<section>	
+<div>
+It is now: <br/>
+{{ now }}<br/>
+<br/>
+{{ hello }}
+</div>
+
+</section> 
+<!--<div class="demo">
+	
+<div id="draggable" class="ui-widget-content">
+	<p>Drag me to my target</p>
+</div>
+
+<div id="droppable" class="ui-widget-header">
+	<p>Drop here</p>
+</div>
+<div class="demo">
+	
+<ul>
+	<li id="draggable" class="ui-state-highlight">Drag me down</li>
+</ul>
+-->
+
+<section>	
+
+<div id="accordion">
+
+
+	<ol class="sortable"> 
+		<li id="list_1">
+		<div>
+			<h3><a href="#">Header</a></h3>
+				<div>
+					<p>des fields.</p>
+				</div>
+		</div>
+		</li>
+		<li id="list_2">
+		<div>
+			<h3><a href="#">title</a></h3>
+				<div>
+					<p>des fields.</p>
+				</div>
+		</div>
+		</li>
+		<li id="list_3">
+		<div>
+			<h3><a href="#">version</a></h3>
+				<div>
+					<p>des fields.</p>
+				</div>
+		</div>
+		</li>  
+		<li id="list_4">
+			<div>
+			<h3><a href="#">number</a></h3>
+				<div>
+					<p>des fields.</p>
+			</div>
+		</div>
+		</li>	
+		<li id="list_5">
+			<div>
+			<h3><a href="#">personalInformation</a></h3>
+				<div>
+					<p>des fields.</p>
+				</div>
+			</div>
+				</li>
+			<li id="list_6">
+				<div>
+				<h3><a href="#">patientInformation</a></h3>
+					<div>
+						<p>des fields.</p>
+					</div>
+				</div>
+			<li id="list_7"><div>
+				<h3><a href="#">languagesSpoken (ne nester pas)</a></h3>
+					<div>
+						<p>des fields.</p>
+					</div>
+				</div>
+			<li id="list_8"><div>
+				<h3><a href="#">supports</a></h3>
+					<div>
+						<p>des fields.</p>
+					</div>
+				</div>
+			</li>
+			<li id="list_9">
+				<div>
+					<h3><a href="#">support</a></h3>
+					<div>
+						<p>des fields.</p>
+					</div>
+				</div>
+			</li>
+			<li id="list_10">
+				<div>
+					<h3><a href="#">blah (ne nester pas)</a></h3>
+						<div>
+							<p>des fields.</p>
+						</div>
+				</div>
+				</li>
+				<li id="list_11"><div>
+			<h3><a href="#">blah</a></h3>
+				<div>
+					<p>des fields.</p>
+				</div>
+			</div>
+				</li>
+				<li id="list_12"><div>
+			<h3><a href="#">blah</a></h3>
+				<div>
+					<p>des fields.</p>
+				</div>
+			</div>
+				
+				
+		
+	</ol> 
+<br/>
+
+
+
+</div>
+<input type="submit" name="serialize" id="serialize" value="Serialize" /> 
+	<pre id="serializeOutput"></pre> 
+ 
+	<p> 
+		<input type="submit" name="toArray" id="toArray" value="To array" /> 
+	<pre id="toArrayOutput"></pre> 
+ 
+	<p> 
+		<input type="submit" name="toHierarchy" id="toHierarchy" value="To hierarchy" /> 
+	<pre id="toHierarchyOutput"></pre> 
+
+</section> 
+
+
+
+
+
+ 
+</body> 
+</html>
+

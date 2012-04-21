@@ -1,0 +1,84 @@
+
+u'header_sections[sectionTitle][0][name]': [u'IRTAG'],
+u'header_sections[sectionTitle][0][parent]': [u'root'], 
+u'header_sections[sectionTitle][0][attributes][]': [u'blahhhh'],
+ 
+u'header_sections[sectionTitle][1][name]': [u'URTAG'],
+u'header_sections[sectionTitle][1][parent]': [u'IRTAG'], 
+u'header_sections[sectionTitle][1][attributes][]': [u'aaaa'], 
+
+u'header_sections[sectionTitle][2][name]': [u'adsf'],
+u'header_sections[sectionTitle][2][parent]': [u'URTAG'],
+u'header_sections[sectionTitle][2][attributes][]': [u'zxccx'],
+
+u'body_sections[asdss][0][parent]': [u'root'], 
+u'body_sections[asdss][0][name]': [u'asdfff'],
+
+u'body_sections[asdss][1][name]': [u'qweewwe'],
+u'body_sections[asdss][1][parent]': [u'asdfff'],
+ 
+
+u'header_sections[asdffd][0][name]': [u'taggggg'],
+u'header_sections[asdffd][0][parent]': [u'root'],
+u'header_sections[asdffd][0][attributes][]': [u'aaaa'], 
+
+
+u'header_sections[asdffd][1][name]': [u'tgeeee'], 
+u'header_sections[asdffd][1][parent]': [u'taggggg'], 
+u'header_sections[asdffd][1][attributes][]': [u'asdfff'], 
+ 
+
+u'document_name': [u'booya'], 
+u'namespaces[]': [u'b1']
+u'save': [u'yes'], 
+
+
+//sometimes they don't have attributes...so you can't count and divide...
+//I need to grab the section_name and see how many times it appears...
+if contains('header_sections')
+	grab varString(len('header_sections'):).split('[')
+	//this will give a list []
+	//okay,
+	//take each string with 'header_sections':
+	//and take each string that contains each title you find
+	//construct a list of titles...no duplicates
+	//go through each title + [number] and find the max number
+	//store into [{"section_title":"list out of list of titles","max":someMaxFun(...)}]
+	//and for each dict for i in range(0:dict["max]):
+		
+
+#what did I just make...
+for key,value in dictionary.iteritems():
+		if u'header_sections' in key:
+			#somehow get the section_title name
+			#make a list of the section_titles
+			for section_title in section_titles:		
+				someList.append({"section_title":section_title,"max":getMax(dictionary, section_title)}
+for each value in someList:
+	header_array.append({"section_title":section_title","tags": tags(value["section_title"],value["max"],dictionary)})
+return header_array
+
+section_title is a string...
+max is an int
+dictionary is the jquery.post dictionary...
+def tags(section_title,max,dictionary)
+	for i in range(0,max):
+		we want dictionary[u'header_sections'[section_title][i][name]']
+			'header_sections'[section_title][i][parent]
+			if ''header_sections'[section_title][i][attributes]' in something
+			'header_sections'[section_title][i][attributes]
+			collect the tags...
+			tags.append({"tag-name":dictionary[u'header_sections'[section_title][i][name]'],
+			"tag-attributes":dictionary[u'header_sections'[section_title][i][name][attributes][]'],
+			"tag-parent":dictionary[u'header_sections'[section_title][i][name][parent]'],
+			"depth":someval})
+		return tags
+			
+					
+		elif u'body_sections' in key:
+
+header contains sections where each section contains tags...
+
+header = [{"section_title": title, "tags": [{"tag-name":"","tag-attributes":[],"tag-parent":"some-tag-name","depth":someval},{...}],
+	  {"section_title": [{"tag-name":"","tag-attributes":[],"tag-parent":"some-tag-name","depth":someval},{...}]
+	}]

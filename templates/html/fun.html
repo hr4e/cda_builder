@@ -1,0 +1,130 @@
+<!DOCTYPE html> 
+ 
+<html lang="en"> 
+<head> 
+<meta charset="utf-8" /> 
+<!--[if lt IE 9]>
+<script src="/static/js/html5.js"></script>
+<![endif]--> 
+	<title>HR4E CDA Builder</title>
+   	<!--link rel="shortcut icon" href="static/favicon.ico" > 
+   	<!--script type="text/javascript" src="/static/js/jquery.min.js"></script> 
+    	<!--script type="text/javascript" src="/static/js/hr4e.js"></script> 
+	<script type="text/javascript" src="/static/js/jquery-1.7.1.min.js"></script> -->
+    	<link rel="stylesheet" type="text/css" href="/static/css/super.css" />
+	<script type="text/javascript" src="/static/js/jquery.min.js"></script> 
+	<script type="text/javascript" src="/static/js/jquery-ui-1.8.18.custom.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery.ui.nestedSortable.js"></script>
+	<script type="text/javascript" src="/static/js/super.js"></script>
+	<link type="text/css" href="/static/css/flick/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
+		
+</head>
+
+<body>
+
+
+{% include "navigation.html" %}
+
+<!-- Add | Edit the new CDA Document -->
+<section class ="document_container">
+<div id="add_station_dialog" title="Enter Unique Station Title">
+			
+			<form>
+				<fieldset class="ui-helper-reset">
+					<label for="station_title">Station Title</label>
+					<input type="text" name="station_title" id="station_title" value="" class="ui-widget-content ui-corner-all" />
+				
+				</fieldset>
+			</form>
+	</div>
+<div id = "button_menu">     
+		<button class= "clinic_button" id = "add_station_button" title="add station"></button>
+		<button class= "clinic_button" id = "add_section_button" title="add section"></button>
+		<button class= "clinic_button" id = "clinic_save_button" title="save clinic"></button>
+		<button class= "clinic_button" id = "clinic_load_button" title="load clinic"></button>
+</div>
+
+<br class="clear" /><br class="clear" /><br class="clear" />
+	<div id="station"> 
+		<div class="group" title ="station_name">
+			<h3><a href="#">Station 1</a></h3>
+			<div id="sections">
+				<ul>
+					<li><a href="#tabs-1">Nunc tincidunt</a><span class='ui-icon ui-icon-close'>Remove Tab</span></li>
+					<li><a href="#tabs-2">Proin dolor</a></li>
+					<li><a href="#tabs-3">Aenean lacinia</a></li>
+				</ul>
+
+				<div id="tabs-1" class ="drop_zone">
+						<div class ="sortable_widgets">
+							<p>tab-1</p>
+						</div>
+				</div>
+
+				<div id="tabs-2">
+					<div class ="sortable_widgets">
+							<p>tab-12</p>
+						</div>
+				</div>
+
+				<div id="tabs-3">
+					<p>tab-3</p>
+				</div> 
+		</div> <!--End Sections Div -->
+	</div><!--End Group Div -->
+	<div class="group" title ="station_name">
+		<h3><a class ="no_hover_white" href="#">Station 2</a></h3>
+		<div>
+			<p>Hello 2</p>
+		</div>
+	</div>
+	<div class="group" title ="station_name">
+		<h3><a href="#">Station 3</a></h3>
+		<div>
+			<p>Hello 3</p>
+			<ul>
+				<li>List item one</li>
+				<li>List item two</li>
+				<li>List item three</li>
+			</ul>
+		</div>
+	</div>
+	<div class="group" title ="station_name">
+		<h3><a href="#">Station 4</a></h3>
+		<div>
+			<p>Sup</p>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<br class="clear" /><br class="clear" /><br class="clear" /><br class="clear" />
+</section> 
+
+	
+<!-- 
+Okay, this will be the form to add a new CDA Form to the set.
+I am using JQuery validation and Django newforms to collect
+the namespace. The namespace button has to be outside of the POST.
+Are the components in the same post as the header info? Different?
+<greenCCD xmlns="AlschulerAssociates::GreenCDA" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hr4e="hr4e::patientdata" 
+		  xsi:schemaLocation="AlschulerAssociates::GreenCDA green_ccd.xsd">
+<br class="clear" />
+-->
+{% include "footer.html" %}
+{% include "widget_bar.html" %}
+
+
+</body> 
+</html>
+
+

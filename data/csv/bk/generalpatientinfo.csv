@@ -1,0 +1,41 @@
+id,timestamp,custodian,author,familyname,givenname,gender,city,provider,immunizations,conditions
+2.16.840.1.113883.3.881.PI11165459,,Tsadek,Solomon,M,Yetebon,Friends of Project Mercy, WHO Vaccines, Cough/Dyspnea Diarrhea +/- dehydration: Current/prior intestinal parasites: 4 day h/o loose stools, low grade temp, cough Cough/Dyspnea Diarrhea +/- dehydration: Current/prior intestinal parasites:
+2.16.840.1.113883.3.881.PI11165459,,Tsadek,Solomon,M,Yetebon,Friends of Project Mercy, WHO Vaccines WHO Vaccines, Cough/Dyspnea Diarrhea +/- dehydration: Current/prior intestinal parasites: 4 day h/o loose stools, low grade temp, cough Cough/Dyspnea Diarrhea +/- dehydration: Current/prior intestinal parasites: Cough/Dyspnea Diarrhea +/- dehydration: Current/prior intestinal parasites: 4 day h/o loose stools, low grade temp, cough Cough/Dyspnea Diarrhea +/- dehydration: Current/prior intestinal parasites:
+2.16.840.1.113883.3.881.PI11165459,,Tsadek,Solomon,M,Yetebon,Friends of Project Mercy, WHO Vaccines, Cough/Dyspnea Diarrhea +/- dehydration: Current/prior intestinal parasites: 4 day h/o loose stools, low grade temp, cough Cough/Dyspnea Diarrhea +/- dehydration: Current/prior intestinal parasites:
+2.16.840.1.113883.3.881.PI11165459,,Tsadek,Solomon,M,Yetebon,Friends of Project Mercy, WHO Vaccines, Cough/Dyspnea Diarrhea +/- dehydration: Current/prior intestinal parasites: 4 day h/o loose stools, low grade temp, cough Cough/Dyspnea Diarrhea +/- dehydration: Current/prior intestinal parasites: Head lice tinea Nutrition Immuniz Diarrhea +/- dehydration: Severe pallor c/w anemia: Cough/Dyspnea foot pain Diarrhea +/- dehydration: Severe pallor c/w anemia: Cough/Dyspnea
+2.16.840.1.113883.3.881.PI11165459,,Tsadek,Solomon,M,Yetebon,Friends of Project Mercy, WHO Vaccines, Cough/Dyspnea Diarrhea +/- dehydration: Current/prior intestinal parasites: 4 day h/o loose stools, low grade temp, cough Cough/Dyspnea Diarrhea +/- dehydration: Current/prior intestinal parasites: Head lice tinea Nutrition Immuniz Diarrhea +/- dehydration: Severe pallor c/w anemia: Cough/Dyspnea foot pain Diarrhea +/- dehydration: Severe pallor c/w anemia: Cough/Dyspnea
+2.16.840.1.113883.3.881.PI11165459,,Tsadek,Solomon,M,Yetebon,Friends of Project Mercy, WHO Vaccines, Cough/Dyspnea Diarrhea +/- dehydration: Current/prior intestinal parasites: 4 day h/o loose stools, low grade temp, cough Cough/Dyspnea Diarrhea +/- dehydration: Current/prior intestinal parasites: Head lice tinea Nutrition Immuniz Diarrhea +/- dehydration: Severe pallor c/w anemia: Cough/Dyspnea foot pain Diarrhea +/- dehydration: Severe pallor c/w anemia: Cough/Dyspnea
+2.16.840.1.113883.3.881.PI11165459,,Tsadek,Solomon,M,Yetebon,Friends of Project Mercy, WHO Vaccines, Cough/Dyspnea Diarrhea +/- dehydration: Current/prior intestinal parasites: 4 day h/o loose stools, low grade temp, cough Cough/Dyspnea Diarrhea +/- dehydration: Current/prior intestinal parasites: Head lice tinea Nutrition Immuniz Diarrhea +/- dehydration: Severe pallor c/w anemia: Cough/Dyspnea foot pain Diarrhea +/- dehydration: Severe pallor c/w anemia: Cough/Dyspnea
+2.16.840.1.113883.3.881.PI13023911,,Keidan,Benjamin,M,Santa Cruz,Friends of Project Mercy, WHO Vaccines WHO Vaccines, Cough/Dyspnea Diarrhea +/- dehydration: e/o Measles: Ear problems/mastoiditis: Eye problems/FHx blindness/trachoma: Severe pallor c/w anemia: Head Hurt Cough/Dyspnea Diarrhea +/- dehydration: e/o Measles: Ear problems/mastoiditis: Eye problems/FHx blindness/trachoma: Severe pallor c/w anemia:
+2.16.840.1.113883.3.881.XXX,,Tsadek,Solomon,M,Yetebon,Friends of Project Mercy, Measles vaccine BCG, OPV-O DPT-1,OPV-1,HBV-1,  Enter condition here Diarrhea
+2.16.840.1.113883.3.881.XXX,,Erise,Re,Female,asdf,Friends of Project Mercy, Measles vaccine BCG, OPV-O,  Enter condition here Diarrhea
+
+id,timestamp,familyname,givenname,estimatedage,gender,city,tribe
+self.id = "2.16.840.1.113883.3.881.PI13023911"
+		self.given_name = "Solomon"
+		self.family_name = "Tsadek"
+		self.estimated_age = "9y 6m"
+		self.stated_age = "9y 6m"
+		self.gender = 'M'
+		self.languages = 'English,French,Spanish,AMH-Et,Guraginya-Et'
+		self.tribe = "Gurage"
+		self.home_village = "Yetebon"
+		self.present_village = "Yetebon"
+		self.teacher = 'Gabre,Johan'
+		self.school = 'Medhane Alem'
+		self.school_year = '4'
+		self.school_status = 'Enrolled'
+		self.height = 80
+		self.weight = 14.5
+		self.bmi=int((float(self.weight))/(pow(float(self.height)/100,2)))
+		self.z_score = '-1'
+		#self.supports = [{'Support Name':'Mugatu, Jacobin','School':'Mason Rice','City':'Newton'}]
+		self.chief_complaint = 'Smells funny, lice'
+		self.red_flags = {'cough':'-1','dehydration':'-1','fever':'-1','measles':'-1','ear_problems':'-1','eye_problems':'-1','pallor':'-1','parasites':'-1'}
+		self.vitals = [{'Time':'11:04','Circumstance':'valueC','Type':'P','Value':'20P'},{'Time':'11:04','Circumstance':'valueC','Type':'BP','Value':'30BP'}]
+		#Dude, you should make this date the key for vaccinations...
+		self.vaccinations = [{'BCG, OPV-O':'06/2010'},{'DPT-1,OPV-1,HBV-1':'07/2010'}]
+		self.assessments = [{'Date':'02/2007','Name': 'Diarrhea','Description':'all the time'}]
+		self.other_findings = 'Hello there'
+		self.test_results = [{'Date':'01/2009','Orasure':'Positive','Hemoglobin': '10', 'Stool O&P Status':'Normal','Stool O&P Note':'Ascaris,Entamoeba'}]
+		self.plans_of_care = [{'Action_Number':'','Order':'Ivermectin 3 MG Oral Tablet','Sig':'gh','Comment':'Hi','Lab_Order':'yes'}]

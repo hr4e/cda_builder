@@ -1,0 +1,512 @@
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	font-family: 'Helvetica Neue', Arial, sans-serif; 
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
+::selection { background: #fe57a1; color: #fff; text-shadow: none; }
+
+
+/* =============================================================================
+   Links
+   ========================================================================== */
+
+a:hover, a:active { outline: 0; }
+
+/*=========================================
+	Main Styles
+=========================================*/
+body {
+font-family: arial;
+font-size: 15px;
+overflow: hidden;
+}
+
+
+.content{
+	
+	background: #FCFFEB;
+	height:600px;
+	width:50%;
+	/* Center
+	margin-left:auto;
+	margin-right:auto;
+	*/
+	top: 40%;
+	margin-left:300px;
+	padding:20px;
+	box-shadow:		3px 3px 8px #444;
+	-mox-box-shadow:	3px 3px 8px #444;
+	-webkit-box-shadow:	3px -3px 8px #444;
+	border-radius: 5px;
+}
+
+.footer {
+	position:absolute;
+	bottom:0;
+	width:80%;
+	  /* Height of the footer */
+	margin-left:auto;
+	margin-right:auto;
+
+	}
+
+h2 {
+color: #ffffff;
+
+font-size: 54px;
+margin-top: 50px;
+}
+
+h3 {
+color: #ffffff;
+text-align: center;
+font-size: 16px;
+margin-top: 20px;
+}
+
+p {
+
+font-size: 16px;
+line-height: 24px;
+margin-top: 20px;
+}
+
+
+
+/*=========================================
+	Nav bar
+=========================================*/
+
+.extrudedddd {
+    color: #FFF;
+    font-family: 'Helvetica Neue', Arial, sans-serif; 
+/* the original site doesn't use the @font-face attribute */
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: #1A5573 1px 1px, #1A5573 2px 2px, #1A5573 3px 3px;
+    position: relative;
+    -moz-transition: all 0.3s ease-out; /* FF3.7+ */
+       -o-transition: all 0.3s ease-out; /* Opera 10.5 */
+  -webkit-transition: all 0.3s ease-out; /* Saf3.2+, Chrome */
+          transition: all 0.3s ease-out;
+}
+
+.extrudedddd:hover {
+    color: #FFF;
+    text-shadow: #1A5573 1px 1px, #1A5573 2px 2px, #1A5573 3px 3px, #1A5573 4px 4px, #1A5573 5px 5px, #1A5573 6px 6px;
+    left: -6px;
+    top: -6px;
+    /*text-outline: 2px #FFF;*/
+    /*text-shadow: black 0.1em 0.1em 0.2em*/
+}
+
+
+nav {
+	width: 100%;
+	margin-left: 20%;
+	margin-right: 10%;
+	
+}
+
+
+
+#options
+{
+/*
+	position: fixed; 
+	right: 0; 
+	top: 40%; 
+	text-align: right;  
+	margin-right: 10px; 
+	*/
+	position: fixed; 
+	left: 0; 
+	top: 40%; 
+	text-align: left;  
+	margin-left: 10px;
+	
+}
+
+
+.bmenu{
+    padding: 0px;
+    margin: 0 0 10px 0;
+    position: relative;
+}
+
+.bmenu li{
+    font-size: 24px;
+    display: block;
+    margin-top:10px;
+    font-family:'Josefin Slab', Arial, sans-serif;
+	
+}
+
+
+
+
+.bmenu li a{
+	text-decoration:none;
+	color: transparent;
+	display: block;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 1px #fff;
+	letter-spacing: 1px;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	-ms-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+.bmenu:hover li a{
+    text-shadow: 0px 0px 6px #fff;
+}
+
+.bmenu li a:hover{
+    color: #fff;
+    text-shadow: 0px 0px 1px #fff;
+    padding-left:20px;
+}
+
+
+
+#save_options
+{
+	padding-right:20px;
+	position: fixed; 
+	right: 0; 
+	top: 40%; 
+	text-align: right;  
+	margin-left: 5px;
+	
+	
+}
+
+.ui-tabs-panel {
+	height:500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+}
+
+
+.save_bmenu{
+    padding: 0px;
+    margin: 0 0 10px 0;
+    position: relative;
+}
+
+.save_bmenu li{
+    font-size: 12px;
+    display: block;
+    margin-top:10px;
+    font-family:'Josefin Slab', Arial, sans-serif;
+	
+}
+
+
+.save_bmenu li a{
+	text-decoration:none;
+	color: transparent;
+	display: block;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 1px #fff;
+	letter-spacing: 1px;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	-ms-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+.save_bmenu:hover li a{
+    text-shadow: 0px 0px 6px #fff;
+}
+
+.save_bmenu li a:hover{
+    color: #fff;
+    text-shadow: 0px 0px 1px #fff;
+    padding-left:20px;
+}
+
+
+
+
+
+nav ul{
+    padding: 0px;
+    margin: 0 0 10px 0;
+    position: relative;
+}
+
+
+nav ul li {
+
+	font-size: 20px;
+   	display: block;
+	width: 15%;
+	text-align: center;
+	float: left;
+	margin:20px;
+	padding:20px;
+	position:relative;
+	box-shadow:		3px 3px 8px #444;
+	-mox-box-shadow:	3px 3px 8px #444;
+	-webkit-box-shadow:	3px -3px 8px #444;
+	
+}
+
+
+nav ul li a {
+	text-decoration: none;
+	color: #ffffff;
+	line-height: 60px;
+	display: block;
+	color: transparent;
+	display: block;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 4px #fff;
+	letter-spacing: 1px;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	-ms-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+
+}
+
+
+
+nav ul:hover li a{
+    text-shadow: 0px 0px 6px #fff;
+}
+nav ul li a:hover{
+    color: #fff;
+    text-shadow: 0px 0px 1px #fff;
+    padding-left: 10px;
+}
+
+
+#ignore {
+	width: 11.1%;
+	text-align: center;
+	float: left;
+	border-style:solid;
+	border-width:1px;
+	margin:20px;
+	padding:20px;
+	-moz-box-shadow: -2px -2px 2px #000;
+	-webkit-box-shadow: -2px -2px 2px #000;
+	box-shadow: -2px -2px 2px #000;
+	-moz-transition: all 0.3s ease-out; /* FF3.7+ */
+       -o-transition: all 0.3s ease-out; /* Opera 10.5 */
+  -webkit-transition: all 0.3s ease-out; /* Saf3.2+, Chrome */
+          transition: all 0.3s ease-out;
+
+}
+
+#home_content
+{
+	border-style:solid;
+	border-width:10px;
+	border-color:white;
+}
+
+
+/*=========================================
+	Nav links
+=========================================
+#Announcements {
+background: #A3081C;
+}
+
+#Course_Description {
+background: #F1B521;
+}
+
+#Course_Materials {
+background: #00048C;
+}
+
+#Contact {
+background: #08A353;
+}
+
+
+
+
+*/
+
+
+/*=========================================
+	Styling each section
+=========================================*/
+#page_container
+{
+	padding-left:20px;
+	margin-bottom:300px;
+}
+
+.box {
+float: left;
+
+}
+
+ol, ul {
+	list-style: none;
+}
+
+#subnav ul {
+	overflow: hidden;
+}
+
+#subnav
+{
+	padding:10px 0 10px 10px;
+	background-color: white;
+}
+
+#subnav li {
+	/*#81B581
+	#EB636F
+	*/
+	width: 25%;
+	height: 80px;
+	float: left;
+	display: block;
+	position: relative;
+	text-align: center;
+	background-color: blue;
+	margin:10px;
+}
+
+#subnav li a .label {
+display: block;
+padding-top: 20px;
+}
+
+#subnav li a .over {
+color: white;
+}
+
+#subnav li a {
+	width: auto;
+	height: 100%;
+	display: block;
+	overflow: hidden;
+	margin-right: 10px;
+	border-radius: 5px;
+	color: #B3B3B3;
+	line-height: 1.1;
+	font-size: 1.6em;
+	font-weight: normal;
+	text-transform: none;
+	text-decoration: none;
+	font-family: 'Billabong','Times New Roman',serif;
+	font-size: 1.8em;
+	line-height: 1em;
+}
+
+
+h2.title
+{
+	font-family:'Brandon',Arial,sans-serif;
+	/*font-family: 'Billabong','Times New Roman',serif;*/
+}
+
+
+
+
+/*
+#home {
+background-image:url('/images/1302478499462.jpg');
+}
+
+#announcements {
+background-image:url('images/IMG_0304.JPG');
+}
+
+#description {
+background-image:url('images/photo.jpg');
+}
+
+#materials {
+background-image:url('images/Y7RR8.jpg');
+}
+
+#contact {
+background-image:url('images/Y7RR8.jpg');
+}
+*/
+
+.stationary
+{
+	background-color:#47A3A3;
+}
+
+#home 
+{
+	background-color:#47A3A3;
+}
+
+#intake {
+	background: #47A3A3;
+}
+
+#triage {
+	background: #47A3A3;
+}
+
+#lab {
+	background: #47A3A3;
+}
+
+#pharmacy {
+	background: #47A3A3;
+}
+
+

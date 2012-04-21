@@ -1,0 +1,89 @@
+<!DOCTYPE html> 
+ 
+<html lang="en"> 
+{% include "header.html" %}
+
+<body>
+
+{% include "navigation.html" %}
+<section>	
+<div>
+It is now: <br/>
+{{ now }}<br/>
+<br/>
+{{ hello }}
+</div>
+
+</section> 
+
+
+<section>
+<div id ="tabs">
+<!-- if I make div an id of fixed_accordion...that drag to the left glitch comes back -->
+	<ul>
+		<li><a href="#tabs-1">Intake</a></li>
+		<li><a href="#tabs-2">Demographics</a></li>
+		<li><a href="#tabs-3">Intake</a></li>
+	</ul>
+	<div id="tabs-1">
+		<ol class="sortable">
+	
+			<li id="list1"><div>Some content</div>
+				<ol>
+					<li id="list2"><div>Some sub-item content</div></li>
+					<li id="list3"><div>Some sub-item content</div></li>
+				</ol>
+			</li>
+			<li id="list4"><div>Some content</div></li>
+		</ol>
+	</div>
+	<div id="tabs-2">
+		<ol class="sortable">
+	
+			<li id="list2"><div>Some content</div>
+				<ol>
+					<li id="list2"><div>Some sub-item content</div></li>
+					<li id="list3"><div>Some sub-item content</div></li>
+				</ol>
+			</li>
+			<li id="list3"><div>Some content</div></li>
+		</ol>
+	</div>
+	<div id="tabs-3">
+		<ol class="sortable">
+	
+			<li id="list1"><div>Some content</div>
+				<ol>
+					<li id="list2"><div>Some sub-item content</div></li>
+					<li id="list3"><div>Some sub-item content</div></li>
+				</ol>
+			</li>
+			<li id="list4"><div>Some content</div></li>
+		</ol>
+	</div>
+	
+</div> <!-- end tabs -->
+</section> <!-- END --> 
+
+<section>
+	<h3>Try the custom methods:</h3> 
+ 
+	<p><br /> 
+		<input type="submit" name="serialize" id="serialize" value="Serialize" /> 
+	<pre id="serializeOutput"></pre> 
+ 
+	<p> 
+		<input type="submit" name="toArray" id="toArray" value="To array" /> 
+	<pre id="toArrayOutput"></pre> 
+ 
+	<p> 
+		<input type="submit" name="toHierarchy" id="toHierarchy" value="To hierarchy" /> 
+	<pre id="toHierarchyOutput"></pre> 
+	
+</section>
+
+
+<br/><br/><br/>
+</body> 
+</html>
+

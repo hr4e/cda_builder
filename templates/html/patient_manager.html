@@ -1,0 +1,27 @@
+<!DOCTYPE html> 
+ 
+<html lang="en"> 
+{% include "header.html" %}
+
+<body>
+
+{% include "navigation.html" %}
+<section class ="document_container">
+<div class="demo">
+	<div class="ui-widget">
+		<label for="Patients">Find a Patient: </label>
+		<input id="patients" />
+	</div>
+	
+
+	<div class="ui-widget" style="margin-top:2em; font-family:Arial">
+	Result(s)
+	<div id="patient_results" style="height: 400px; width: 600px; overflow: auto;" class="ui-widget-content"></div>
+</div>
+Okay, we want to be able to get a patient name and all of his/her past records for print selection...
+</div> 
+</section>
+{% include "footer.html" %}
+</body> 
+</html>
+

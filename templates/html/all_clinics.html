@@ -1,0 +1,44 @@
+<!DOCTYPE html> 
+ 
+<html lang="en"> 
+{% include "header.html" %}
+
+<body>
+
+{% include "navigation.html" %}
+<section class="document_container">	
+
+<div id="documents-contain" class="ui-widget">
+	<h2>Existing Clinics</h2>
+	<table id="documents" class="ui-widget ui-widget-content">
+		<thead>
+			<tr class="ui-widget-header ">
+				<th>Name</th>
+				<th>Valid</th>				
+				<th>Date Created</th>
+				<th>Delete</th>
+				<th>Edit</th>
+<!-- <span class="ui-icon ui-icon-close">Remove Tab</span> -->
+			</tr>
+		</thead>
+		<tbody>
+		{% for clinic in clinics %}
+			<tr>
+				<td id ="document_name">{{ clinics.namer }}</td>
+				<td>{{ clinics.is_valid }}</td>
+				<td>{{ clinics.date_created }}</td>
+				<td><p class='ui-icon ui-icon-close'>Delete</p></td>
+				<td><p class='ui-icon ui-icon-pencil'>Edit</p></td>
+			</tr>
+		{% endfor %}
+			
+		</tbody>
+	</table>
+</div>
+<button id="create-clinic">create a new clinic</button>
+</section>
+
+ 
+</body> 
+</html>
+
