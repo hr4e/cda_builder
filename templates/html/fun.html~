@@ -20,6 +20,72 @@
 		
 </head>
 
+<script>
+	$(function() {
+		var $tab_title_input = $( "#tab_title"),
+			$tab_content_input = $( "#tab_content" );
+		var tab_counter = 2;
+
+		// tabs init with a custom tab template and an "add" callback filling in the content
+		var $tabs = $( "#sections").tabs({
+			tabTemplate: "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close'>Remove Tab</span></li>",
+			add: function( event, ui ) {
+				var tab_content = $tab_content_input.val() || "Tab " + tab_counter + " content.";
+				$( ui.panel ).append( "<p>" + tab_content + "</p>" );
+			}
+		});
+
+		// modal dialog init: custom buttons and a "close" callback reseting the form inside
+		var $dialog = $( "#dialog" ).dialog({
+			autoOpen: false,
+			modal: true,
+			buttons: {
+				Add: function() {
+					addTab();
+					$( this ).dialog( "close" );
+				},
+				Cancel: function() {
+					$( this ).dialog( "close" );
+				}
+			},
+			open: function() {
+				$tab_title_input.focus();
+			},
+			close: function() {
+				$form[ 0 ].reset();
+			}
+		});
+
+		// addTab form: calls addTab function on submit and closes the dialog
+		var $form = $( "form", $dialog ).submit(function() {
+			addTab();
+			$dialog.dialog( "close" );
+			return false;
+		});
+
+		// actual addTab function: adds new tab using the title input from the form above
+		function addTab() {
+			var tab_title = $tab_title_input.val() || "Tab " + tab_counter;
+			$tabs.tabs( "add", "#tabs-" + tab_counter, tab_title );
+			tab_counter++;
+		}
+
+		// addTab button: just opens the dialog
+		$( "#add_tab" )
+			.button()
+			.click(function() {
+				$dialog.dialog( "open" );
+			});
+
+		// close icon: removing the tab on click
+		// note: closable tabs gonna be an option in the future - see http://dev.jqueryui.com/ticket/3924
+		$( "#tabs span.ui-icon-close" ).live( "click", function() {
+			var index = $( "li", $tabs ).index( $( this ).parent() );
+			$tabs.tabs( "remove", index );
+		});
+	});
+	</script>
+
 <body>
 
 
@@ -89,42 +155,31 @@
 					</select>
 				</fieldset>
 			</form>
-</div>
-
-<div id="add_widget_dialog" title="Enter Unique Widget Title">
-			
-			<form>
-				<fieldset class="ui-helper-reset">
-					<label for="widget_title">Widget Title (placeholder)</label>
-					<input type="text" name="section_title" id="section_title" value="" class="ui-widget-content ui-corner-all" />
-					<label for="widget_title_choice">Select Widget</label>
-					<select name="widget_title_choice" id="widget_title_choice" class="ui-widget-content ui-corner-all">
-					</select>
-					<label for="station_title_choice">Station</label>
-					<select name="station_title_choice" id="station_title_choice" class="ui-widget-content ui-corner-all">
-					</select>
-					<label for="section_title_choice">Section</label>
-					<select name="section_title_choice" id="section_title_choice" class="ui-widget-content ui-corner-all">
-					</select>
-				</fieldset>
-			</form>
-</div>
+	</div>
 
 
 <br class="clear" /><br class="clear" /><br class="clear" />
 	<div id="stations">
-		 <!-- end tabs -->
-		<!--
-		<div class="group" id ="station_Intake" title ="station_name">
+		<div class="group" title ="station_name">
 			<h3><a href="#">Intake</a></h3>
 			<div id="sections">
 					<ul>
-						<!--<li><a href="#tabs-1">Demographics</a><span class='ui-icon ui-icon-close'>Remove Tab</span></li>
+						
+					</ul>
+
+			</div> <!--End Sections Div -->
+		<!--</div>--><!--End Group Div -->
+		 <!-- end tabs -->
+		<!--<div class="group" title ="station_name">
+			<h3><a href="#">Intake</a></h3>
+			<div id="sections">
+					<ul>
+						<li><a href="#tabs-1">Demographics</a><span class='ui-icon ui-icon-close'>Remove Tab</span></li>
 						<li><a href="#tabs-2">Nutrition</a><span class='ui-icon ui-icon-close'>Remove Tab</span></li>
 						<li><a href="#tabs-3">Photograph</a><span class='ui-icon ui-icon-close'>Remove Tab</span></li>
 						<li><a href="#tabs-4">Checkout</a><span class='ui-icon ui-icon-close'>Remove Tab</span></li>
 					</ul>
-					
+
 					<div id="tabs-1" class ="drop_zone">
 							<div class ="sortable_widgets">
 								<p>tab-1</p>
@@ -139,13 +194,10 @@
 
 					<div id="tabs-3">
 						<p>tab-3</p>
-					</div>
-					<div id="tabs-4">
-						<p>Checkout</p>
 					</div> 
-			</div> <!--End Sections Div 
-		</div><!--End Group Div 
-	<div class="group" title ="station_name">
+			</div> <!--End Sections Div -->
+		<!--</div>--><!--End Group Div -->
+	<!--<div class="group" title ="station_name">
 		<h3><a class ="no_hover_white" href="#">Triage</a></h3>
 		<div>
 			<p>Hello 2</p>
@@ -168,10 +220,32 @@
 			<p>Sup</p>
 		</div>
 	</div>-->
-</div><!-- End Stations -->
+</div>
 
 
+<div class="demo">
 
+	<div id="dialog" title="Tab data">
+		<form>
+			<fieldset class="ui-helper-reset">
+				<label for="tab_title">Title</label>
+				<input type="text" name="tab_title" id="tab_title" value="" class="ui-widget-content ui-corner-all" />
+				<label for="tab_content">Content</label>
+				<textarea name="tab_content" id="tab_content" class="ui-widget-content ui-corner-all"></textarea>
+			</fieldset>
+		</form>
+	</div>
+
+	<button id="add_tab">Add Tab</button>
+
+	<div id="tabs">
+		<ul>
+			
+		</ul>
+		
+	</div>
+
+</div><!-- End demo -->
 
 
 
@@ -194,7 +268,7 @@ Are the components in the same post as the header info? Different?
 <br class="clear" />
 -->
 {% include "footer.html" %}
-{% include "widget_bar.html" %}
+<!--{% include "widget_bar.html" %}-->
 
 
 </body> 

@@ -669,10 +669,9 @@ $(function() {
 		});*/
 
 		$( "#sections span.ui-icon-close" ).live( "click", function() {
-			//var index = $( "li", $section_tabs ).index( $( this ).parent() );
-			//var tab_name = $( "li a", $section_tabs ).text();
-			//$section_tabs.tabs( "remove", index );
-			alert("TBD Remove sections");
+			var index = $( "li", $section_tabs ).index( $( this ).parent() );
+			var tab_name = $( "li a", $section_tabs ).text();
+			$section_tabs.tabs( "remove", index );
 		});
 
 

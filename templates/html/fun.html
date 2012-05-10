@@ -20,6 +20,8 @@
 		
 </head>
 
+
+
 <body>
 
 
@@ -27,6 +29,46 @@
 
 <!-- Add | Edit the new CDA Document -->
 <section class ="document_container">
+{% include "options.html" %}
+
+
+<h1>Basic Clinic Information</h1>
+<div class = "add_document">
+	<p class="validateTips">This assumes you have working knowledge of xml namespaces. <br/>All form fields are required.</p>
+	<p></p>
+	<form>
+				<div class="clinic_name">
+					<form>
+						<fieldset class="ui-helper-reset">
+							<label for="doc_name_title">Clinic Name</label>
+							<input type="text" name="clinic_name_title" id="clinic_name_title" value="" class="ui-widget-content ui-corner-all" />
+						</fieldset><br class="clear" />
+					
+					</form>	
+				</div>
+				<br/>
+				<div class="namespaces">
+				<p>
+					<strong>Namespace(s)</strong><br/>
+				</p>
+				<fieldset>
+					<ul>
+					
+					</ul>
+				
+					
+				
+				</fieldset>
+				</div>
+				<br/>
+				
+			</form>
+<button id ="add_namespace">Add a Namespace</button>
+<br class="clear" /><br class="clear" />
+<br/><br/><br/>
+</div>
+
+
 <div id="add_station_dialog" title="Enter Unique Station Title">
 			
 			<form>
@@ -37,49 +79,68 @@
 				</fieldset>
 			</form>
 	</div>
-<div id = "button_menu">     
-		<button class= "clinic_button" id = "add_station_button" title="add station"></button>
-		<button class= "clinic_button" id = "add_section_button" title="add section"></button>
-		<button class= "clinic_button" id = "clinic_save_button" title="save clinic"></button>
-		<button class= "clinic_button" id = "clinic_load_button" title="load clinic"></button>
-</div>
+
+<div id="add_section_dialog" title="Enter Unique Section Title">
+			
+			<form>
+				<fieldset class="ui-helper-reset">
+					<label for="section_title">Section Title</label>
+					<input type="text" name="section_title" id="section_title" value="" class="ui-widget-content ui-corner-all" />
+					<label for="station_title_choice">Station</label>
+					<select name="station_title_choice" id="station_title_choice" class="ui-widget-content ui-corner-all">
+					</select>
+				</fieldset>
+			</form>
+	</div>
+
 
 <br class="clear" /><br class="clear" /><br class="clear" />
-	<div id="station"> 
+	<div id="stations">
 		<div class="group" title ="station_name">
-			<h3><a href="#">Station 1</a></h3>
+			<h3><a href="#">Intake</a></h3>
 			<div id="sections">
-				<ul>
-					<li><a href="#tabs-1">Nunc tincidunt</a><span class='ui-icon ui-icon-close'>Remove Tab</span></li>
-					<li><a href="#tabs-2">Proin dolor</a></li>
-					<li><a href="#tabs-3">Aenean lacinia</a></li>
-				</ul>
+					<ul>
+						
+					</ul>
 
-				<div id="tabs-1" class ="drop_zone">
+			</div> <!--End Sections Div -->
+		<!--</div>--><!--End Group Div -->
+		 <!-- end tabs -->
+		<!--<div class="group" title ="station_name">
+			<h3><a href="#">Intake</a></h3>
+			<div id="sections">
+					<ul>
+						<li><a href="#tabs-1">Demographics</a><span class='ui-icon ui-icon-close'>Remove Tab</span></li>
+						<li><a href="#tabs-2">Nutrition</a><span class='ui-icon ui-icon-close'>Remove Tab</span></li>
+						<li><a href="#tabs-3">Photograph</a><span class='ui-icon ui-icon-close'>Remove Tab</span></li>
+						<li><a href="#tabs-4">Checkout</a><span class='ui-icon ui-icon-close'>Remove Tab</span></li>
+					</ul>
+
+					<div id="tabs-1" class ="drop_zone">
+							<div class ="sortable_widgets">
+								<p>tab-1</p>
+							</div>
+					</div>
+
+					<div id="tabs-2">
 						<div class ="sortable_widgets">
-							<p>tab-1</p>
-						</div>
-				</div>
+								<p>tab-12</p>
+							</div>
+					</div>
 
-				<div id="tabs-2">
-					<div class ="sortable_widgets">
-							<p>tab-12</p>
-						</div>
-				</div>
-
-				<div id="tabs-3">
-					<p>tab-3</p>
-				</div> 
-		</div> <!--End Sections Div -->
-	</div><!--End Group Div -->
-	<div class="group" title ="station_name">
-		<h3><a class ="no_hover_white" href="#">Station 2</a></h3>
+					<div id="tabs-3">
+						<p>tab-3</p>
+					</div> 
+			</div> <!--End Sections Div -->
+		<!--</div>--><!--End Group Div -->
+	<!--<div class="group" title ="station_name">
+		<h3><a class ="no_hover_white" href="#">Triage</a></h3>
 		<div>
 			<p>Hello 2</p>
 		</div>
 	</div>
 	<div class="group" title ="station_name">
-		<h3><a href="#">Station 3</a></h3>
+		<h3><a href="#">Pharmacy</a></h3>
 		<div>
 			<p>Hello 3</p>
 			<ul>
@@ -90,18 +151,12 @@
 		</div>
 	</div>
 	<div class="group" title ="station_name">
-		<h3><a href="#">Station 4</a></h3>
+		<h3><a href="#">Labs</a></h3>
 		<div>
 			<p>Sup</p>
 		</div>
-	</div>
+	</div>-->
 </div>
-
-
-
-
-
-
 
 
 
@@ -121,7 +176,7 @@ Are the components in the same post as the header info? Different?
 <br class="clear" />
 -->
 {% include "footer.html" %}
-{% include "widget_bar.html" %}
+<!--{% include "widget_bar.html" %}-->
 
 
 </body> 

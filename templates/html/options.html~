@@ -3,7 +3,7 @@
 	<ul class="bmenu">
 		<li><button class= "clinic_button" id = "add_station_button" title="add station"></button></li>
 		<li><button class= "clinic_button" id = "add_section_button" title="add section"></button></li>
-		<li><button class= "clinic_button" id = "add_widget_button" title="add widget"></button></li>
+		<li><button class= "clinic_button" id = "add_widget_button" title="add section"></button></li>
 		<li><button class= "clinic_button" id = "clinic_save_button" title="save clinic"></button></li>
 		<li><button class= "clinic_button" id = "clinic_load_button" title="load clinic"></button></li>
 	</ul>

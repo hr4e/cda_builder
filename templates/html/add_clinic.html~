@@ -97,9 +97,6 @@
 				<fieldset class="ui-helper-reset">
 					<label for="widget_title">Widget Title (placeholder)</label>
 					<input type="text" name="section_title" id="section_title" value="" class="ui-widget-content ui-corner-all" />
-					<label for="widget_title_choice">Select Widget</label>
-					<select name="widget_title_choice" id="widget_title_choice" class="ui-widget-content ui-corner-all">
-					</select>
 					<label for="station_title_choice">Station</label>
 					<select name="station_title_choice" id="station_title_choice" class="ui-widget-content ui-corner-all">
 					</select>
