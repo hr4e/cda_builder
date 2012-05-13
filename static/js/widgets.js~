@@ -1,0 +1,18 @@
+$(function() {	
+	function Widget(the_name,fields,station,section)
+	{
+		this.the_name = "Demo";
+		this.fields = new Array();
+		this.station ="Intake";
+		this.section = "Demographics";
+	};
+
+	function field(name,entryType,inherited,XMLBind)
+	{
+		this.the_name = "Name";
+		this.entryType = "Drop Down";
+		this.inherited = "Pointer to other field in global list";
+		this.XMLBind = "{ournamespace}/...";
+	};
+	
+});

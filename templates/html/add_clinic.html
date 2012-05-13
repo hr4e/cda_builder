@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="/static/js/jquery.min.js"></script> 
 	<script type="text/javascript" src="/static/js/jquery-ui-1.8.18.custom.min.js"></script>
 	<script type="text/javascript" src="/static/js/jquery.ui.nestedSortable.js"></script>
+	<script type="text/javascript" src="/static/js/widgets.js"></script>
 	<script type="text/javascript" src="/static/js/super.js"></script>
 	<link type="text/css" href="/static/css/flick/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
 		
@@ -86,6 +87,8 @@
 					<input type="text" name="section_title" id="section_title" value="" class="ui-widget-content ui-corner-all" />
 					<label for="station_title_choice">Station</label>
 					<select name="station_title_choice" id="station_title_choice" class="ui-widget-content ui-corner-all">
+						<option value="Intake">Intake</option>
+						<option value= "Exit">Exit</option>
 					</select>
 				</fieldset>
 			</form>
@@ -95,84 +98,111 @@
 			
 			<form>
 				<fieldset class="ui-helper-reset">
-					<label for="widget_title">Widget Title (placeholder)</label>
-					<input type="text" name="section_title" id="section_title" value="" class="ui-widget-content ui-corner-all" />
 					<label for="widget_title_choice">Select Widget</label>
-					<select name="widget_title_choice" id="widget_title_choice" class="ui-widget-content ui-corner-all">
+					<select size = "10" style="width:300px; padding-left:10px;" name="widget_title_choice" id="widget_title_choice" class="ui-widget-content ui-corner-all">
+						
 					</select>
 					<label for="station_title_choice">Station</label>
 					<select name="station_title_choice" id="station_title_choice" class="ui-widget-content ui-corner-all">
+						<option value="Intake">Intake</option>
+						<option value= "Exit">Exit</option>
 					</select>
 					<label for="section_title_choice">Section</label>
 					<select name="section_title_choice" id="section_title_choice" class="ui-widget-content ui-corner-all">
 					</select>
 				</fieldset>
 			</form>
+			<div class="widget_preview"><h3>Widget Title Preview</h3>
+				<!--<div class = "r4 left">
+					<form>
+						<fieldset class="ui-helper-reset">
+							<label for="field_name">Field 1</label>
+							<input type="text" name="field_name" id="field_name" value="" class="ui-widget-content ui-corner-all" />
+						</fieldset>
+					</form>
+				</div>
+				<div class = "r6">
+					<ul>
+						<li>Name: output</li>
+					</ul>
+				</div>-->
+			</div>
 </div>
 
 
 <br class="clear" /><br class="clear" /><br class="clear" />
+<h1>Stations</h1>
+<p class="validateTips">An intake station and an exit station are default to all clinics</p>
+<br class="clear" /><br class="clear" />
 	<div id="stations">
 		 <!-- end tabs -->
-		<!--
-		<div class="group" id ="station_Intake" title ="station_name">
+		
+		<div class="group" id ="station_Intake" title ="station_Intake">
 			<h3><a href="#">Intake</a></h3>
 			<div id="sections">
-					<ul>
-						<!--<li><a href="#tabs-1">Demographics</a><span class='ui-icon ui-icon-close'>Remove Tab</span></li>
-						<li><a href="#tabs-2">Nutrition</a><span class='ui-icon ui-icon-close'>Remove Tab</span></li>
-						<li><a href="#tabs-3">Photograph</a><span class='ui-icon ui-icon-close'>Remove Tab</span></li>
-						<li><a href="#tabs-4">Checkout</a><span class='ui-icon ui-icon-close'>Remove Tab</span></li>
-					</ul>
+				<ul>
+						
+				</ul>
 					
-					<div id="tabs-1" class ="drop_zone">
-							<div class ="sortable_widgets">
-								<p>tab-1</p>
-							</div>
-					</div>
-
-					<div id="tabs-2">
-						<div class ="sortable_widgets">
-								<p>tab-12</p>
-							</div>
-					</div>
-
-					<div id="tabs-3">
-						<p>tab-3</p>
-					</div>
-					<div id="tabs-4">
-						<p>Checkout</p>
-					</div> 
-			</div> <!--End Sections Div 
-		</div><!--End Group Div 
-	<div class="group" title ="station_name">
-		<h3><a class ="no_hover_white" href="#">Triage</a></h3>
-		<div>
-			<p>Hello 2</p>
-		</div>
-	</div>
-	<div class="group" title ="station_name">
-		<h3><a href="#">Pharmacy</a></h3>
-		<div>
-			<p>Hello 3</p>
-			<ul>
-				<li>List item one</li>
-				<li>List item two</li>
-				<li>List item three</li>
-			</ul>
-		</div>
-	</div>
-	<div class="group" title ="station_name">
-		<h3><a href="#">Labs</a></h3>
-		<div>
-			<p>Sup</p>
-		</div>
-	</div>-->
+			</div> <!--End Sections Div -->
+		</div><!--End Group Div -->
+		<div class="group" id ="station_Exit" title="station_Exit">
+			<h3><a href="#">Exit</a></h3>
+			<div id="sections">
+				<ul>
+						
+				</ul>
+					
+			</div> <!--End Sections Div -->
+		</div><!--End Group Div -->
 </div><!-- End Stations -->
 
 
 
-
+<!-- 
+<article class ="tab_content" id = "intake_demographics">
+		<div class = "r4 left">
+		<h3>Edit Demographics: </h4>
+			<form action="" method ="POST">
+				<ul>
+				{% for field in intakeDemographics %}
+	       				<li>
+		    				{% if field.errors %}<font color="red"> {{ field.errors }} </font>{% endif %}
+		    				<strong>{{ field.label_tag }}:</strong><br/> {{ field }}
+					</li>
+	    			{% endfor %}
+				<ul>
+				<br/>
+				<div>
+				<input type="submit" name="update_demographics" value="Update Demographics" />	
+				
+				</div>
+			</form>
+		</div>
+		<div class ="r4">
+			
+		</div>
+		
+		<div class ="r6">
+			<h3>Demographics:</h3>
+			<ul>
+				<li>Family Name: {{ patient.family_name }}</li>
+				<li>Given Name: {{ patient.given_name }}</li>
+				<li>Gender: {{ patient.gender }}</li>
+				<li>Estimated Age: {{ patient.estimated_age }}</li>
+				<li>Stated Age: {{ patient.stated_age }}</li>
+				<li>Languages: {% for language in patient.languages %}{{ language }}, {% endfor %}</li>
+				<li>Tribe: {{ patient.tribe }}</li>
+				<li>Home Village: {{ patient.home_village }}</li>
+				<li>Present Village: {{ patient.present_village }}</li>
+				<li>School: {{ patient.school }}</li>
+				<li>Enrollment Status: {{ patient.school_status }} </li>
+				<li>Grade in School: {{ patient.school_year }}</li>
+				<li>Teacher: {{ patient.teacher }}</li>	
+			</ul>
+			
+		</div>
+		</article><!--end .r8 left intake_information --> 
 
 
 

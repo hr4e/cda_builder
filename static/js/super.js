@@ -3,32 +3,127 @@ $(function() {
 		var namespace_counter = 1;
 		var $tab_title_input = $( "#tab_title");
 		var $tag_title_input = $( "#tag_title");
-
-
-		var $header_tab_title_input = $( "#header_tab_title");
-		var $header_tag_title_input = $( "#header_tag_title");
-		var $body_tab_title_input = $( "#body_tab_title");
-		var $body_tag_title_input = $( "#body_tag_title");
-		var $doc_name_title_input = $("#doc_name_title");
 		var $clinic_name_title_input = $("#clinic_name_title");
 		//this list is needed for the header tag adder dialog
-		
 		//you will have to set this counter each time you come to this page.
-		var tab_counter = 0;
-		var header_tab_counter = 0;
-		var body_tab_counter = 0;
-		var $header_tab_selection = $("#header_title_choice");
-		var $body_tab_selection = $("#body_title_choice");
+		//var widgets = new Array();
+		//widgets[0] = new Widget("Demo",new Array(),"Intake","Demographics");
+		
+
+		function Widget(the_name,fields,station,section)
+		{
+			this.the_name = the_name;
+			this.fields = fields;
+			this.station = station;
+			this.section = section;
+			//this method takes in the div where the html
+			//should be added.
+			this.create = function(diver, htmler) {
+     				diver.append(htmler);
+  			};
+		};
+
+		function Field(the_name,input_type,inherited,XMLBind,one_two_column)
+		{
+			this.the_name = the_name;
+			this.input_type = input_type;
+			this.inherited = inherited;
+			this.XMLBind = XMLBind;
+			this.one_two_column = one_two_column;
+		};
 
 
 		
-		//$("#station_title").val(),"station");
+		var widgets = new Array();
+		var fields = new Array();
+		var fnameField = new Field("First Name","text","None","{namespace}path/","one");
+		var lnameField = new Field("Last Name","text","None","{namespace}path/","one");
+		fields[0] = fnameField;
+		fields[1] = lnameField;
+		var nameWidget = new Widget("Name",fields,"Intake","Demographics");
+		var lnameWidget = new Widget("Last Name",lnameField,"Intake","Demographics");
+		widgets[0] = nameWidget;
+		widgets[1] = lnameWidget;		
+
+
+		/*<form>
+						<fieldset class="ui-helper-reset">
+							<label for="field_name">Field 1</label>
+							<input type="text" name="field_name" id="field_name" value="" class="ui-widget-content ui-corner-all" />
+						</fieldset>
+					</form>*/
+
+
+		
+		//this method is for preview a specific widget in the dialog box
+		document.getElementById("widget_title_choice").onchange = function(){
+		  	//alert($("#widget_title_choice option:selected").html());
+			//do a search into the widget list and then invoke the
+			//create method into the preview box
+			//do this we need to go through each field and the widget
+			//and append that field into the preview div...
+			//we need to use the .create method...
+			//this is a farking disaster...you need to change this to be more 
+			//generic
+			for(var i =0; i < widgets.length; i++)
+			{
+				if (widgets[i].the_name === $("#widget_title_choice option:selected").html())
+				{
+					$(".widget_preview").find(".widget_container").remove();
+					$(".widget_preview").append("<div class=\"widget_container\"><div class=\"r4 left\"></div></div>");
+					$(".widget_preview .r4 form").remove();
+					widgets[i].create($(".widget_preview .r4"),$("<form>").append("<fieldset></fieldset>"));
+					for (var j = 0; j < widgets[i].fields.length; j++)
+					{
+						var field_name = widgets[i].fields[j].the_name;
+						var label = "<label for =\"" + field_name + "\">" + field_name + "</label>";
+						var input = "<input type=\"" + widgets[i].fields[j].input_type + "\" name=\"" + field_name + "\" id=\"" + field_name + "\" value=\"\" class=\"ui-widget-content ui-corner-all\" />";
+						$(".widget_preview .r4 form fieldset").append(label);
+						$(".widget_preview .r4 form fieldset").append(input);
+					}
+					//widgets[i].create($(".widget_preview .r4"),$("<form>").append("<fieldset></fieldset>").append(label));
+				}
+			}
+		}
+
+		
+
+		//take all of the widgets and populate the widget_title_choice select
+		function populateWidgetDialogList()
+		{
+			$("#add_widget_dialog #widget_title_choice").find("option").remove();
+			for(var i =0; i < widgets.length; i++)
+			{
+				$("#add_widget_dialog #widget_title_choice").append("<option value= \"" + widgets[i].the_name + "\">"+ widgets[i].the_name +"</option>");
+			}
+		}
+		
+		
+
+		//we have to use this initialize the exit station
+		//and the intake stations
+		$( "#stations" )
+			.accordion({
+				collapsible: true,
+				header: "> div > h3"
+			})
+			.sortable({
+				axis: "y",
+				handle: "h3",
+				stop: function( event, ui ) {
+					// IE doesn't register the blur when sorting
+					// so trigger focusout handlers to remove .ui-state-focus
+					ui.item.children( "h3" ).triggerHandler( "focusout" );
+				}
+		});
 		
 		//we want this function to return true | false
 		//dependent on whether or not the validation passes
 		//we take in the type of validation we should do
 		//called save_name = { "doc_save" || "section_save" || "tag_save" }
-		function isValidSection(text,part)
+		//we need to validate the selected options...
+		//we need to allow spaces...
+		function isValid(text,part,pertinent_station)
 		{
 			//characters must be alpha and have a min of two characters.
 			var re = /^[A-Z]{2,}$/i;
@@ -38,54 +133,29 @@ $(function() {
 			if(!(re.test(text)))
 			{
 				errors.push("Hey, you need to use a minimum of two alpha characters.");
-				errors.push("Just a friendly reminder: No special characters (including spaces)");
+				errors.push("Just a friendly reminder: No special characters or spaces.");
 			}
 			if(part === "station")
 			{
 				
 				if(isSame(text,$(".group h3 a")))
 				{
-					errors.push("You station title needs to be unique");
+					errors.push("Your station title needs to be unique.");
 				}
 			}
-			if(part === "tab")
+			//you need to add in validation for the section
+			if(part === "section")
 			{
-				if(isSame(text,$("#header_tabs ul li a")) || isSame(text,$("#body_tabs ul li a")))
+				//text will be the station name...you need to do a crawl of some html
+				//I need to get the station name...from h3 > a
+				if(isSame(text,$("#station_" + pertinent_station).find("li > a")))
 				{
-					errors.push("Your section title needs to be unique");
+					errors.push("Your section name needs to be unique per station.");
 				}
-			}
-			//you might want to turn this validation part off.
-			//what if you have <text> and <text> under different parents...
-			//that would be berry bad...
-			if(part === "tag")
-			{
-				$("#header_tabs ul li a").each(function() {
-					var possible_matches = collectTags($(this).text());
-					for(var i in possible_matches)
-					{
-						if(text === possible_matches[i]['name'])
-						{
-							errors.push("Your tag title needs to be unique...thanks");
-						}
-						
-					}
-	
-					
-				});
-				$("#body_tabs ul li a").each(function() {
-					var possible_matches = collectTags($(this).text());
-					for(var i in possible_matches)
-					{
-						if(text === possible_matches[i]['name'])
-						{
-							errors.push("Your tag title needs to be unique...thanks");
-						}
-						
-					}
-	
-					
-				});
+				if(text === "")
+				{
+					errors.push("You need to have a station...");
+				}
 			}
 			return errors;
 		}
@@ -166,33 +236,6 @@ $(function() {
 
 		
 
-
-		/*
-		*	LES CONTROLLERS DES TABS
-		*
-		*/
-
-		//takes in the part (header or body)
-		//and add a tab. 
-		//you need to address these counters...
-		//are they necessary?
-		function addTab(part) {
-				var tab_title = $header_tab_title_input.val() || $body_tab_title_input.val() || "Tab " + tab_counter;				
-				if (part == 'header')
-				{
-					$header_tabs.tabs( "add", "#tabs-"+ tab_title, tab_title );
-					header_tab_counter++;
-					
-				}
-				else
-				{
-					$body_tabs.tabs( "add", "#tabs-"+ tab_title, tab_title );
-					body_tab_counter++;
-				}
-				$("#add_" + part + "_tag_dialog select").append("<option value= \"" + tab_title + "\">"+ tab_title +"</option>");
-			
-		}
-
 		
 		$( "#add_namespace" )
 			.button({ icons: { primary: "ui-icon-plusthick" }})
@@ -248,28 +291,6 @@ $(function() {
 			return tags;
 		}
 
-		//#list with h1:tag_title of tag_title...
-		//find it...and then find its parent of parent (ol > #list)
-		//if it exists...mark the parents.
-		//if not, mark it as root.
-		//send in an ol in #tabs-texter...check to see if it has
-		//a parent of parent of #list...if it does...store parent of #list h1.tag_title as the parent.
-		//return the parent name.
-		function getParent(tag)
-		{
-			var parent_name = tag.parent('div.the_sortables').parent('li#list').parent('ol').parent('li#list');
-			//this means that we have a parent...
-			//and return the parent's name (tag_name of sort).
-			if (parent_name.length > 0)
-			{
-				return parent_name.children('div.the_sortables').children(' h1.tag_title').text();
-			}
-			//return the root node...
-			else
-			{
-				return "root";
-			}
-		}
 
 		//collect the values from the namespaces input
 		function collectNamespaces()
@@ -291,7 +312,7 @@ $(function() {
 			.button({ icons: { primary: "ui-icon-disk" }})
 			.click(function() {
 				var doc_name_input = $doc_name_title_input.val();
-				if(!(isValidSection(doc_name_input)))
+				if(!(isValid(doc_name_input)))
 				{
 					addErrors($("#options"),["Hey! You forgot the document name."]);
 				}
@@ -396,38 +417,7 @@ $(function() {
 		});
 
 
-		function log( message ) {
-			$( "<div/\>" ).text( message ).prependTo( "#patient_results" );
-			$( "#log" ).scrollTop( 0 );
-		}
-
-		//Yup this is my list of searchable patients for JQuery.
-		//The team running the patient search will need to remedy this...
-		//Sorry everyone!
-		var availableTags = [
-			"Alex Gainer",
-			"Phil Strong",
-			"Mary Roth",
-			"James Davis",
-			"Anthony Masuda",
-			"Bob Bobbers",
-			"Ryan Ryaners",
-			"Paul Paulers",
-			"George Georgers",
-			"Eric Ericson"
-		];
-
-		//Basic autocomplete functionality...
-		//the data source is the array above.
-		$( ".demo #patients" ).autocomplete({
-			source: availableTags,
-			minLength: 2,
-			select: function( event, ui ) {
-				log( ui.item ?
-					"Selected: " + ui.item.value :
-					"Nothing selected, input was " + this.value );
-			}
-		});
+		
 		
 		
 		$( ".sortable_widgets" ).sortable();
@@ -477,7 +467,8 @@ $(function() {
 				var x = "<div class=\"group\" id =\"station_"+ title +"\" title =\"station_"+ title +"\"><h3><a href= \"#\">"+ title +
 					"</a><span class='ui-icon ui-icon-close'>Remove Station</span></h3><div id=\"sections\"><ul><\/ul></div></div>";
 				//Okay, this add the station to the stations ID in add_clinic.html and edit_clinic.html
-				$("#add_section_dialog select").append("<option value= \"" + title + "\">"+ title +"</option>");
+				$("#add_section_dialog #station_title_choice").append("<option value= \"" + title + "\">"+ title +"</option>");
+				$("#add_widget_dialog #station_title_choice").append("<option value= \"" + title + "\">"+ title +"</option>");
 				//This connect the new group to an accordion and makes it sortable.
 				$("#station_"+ title + " #sections" ).tabs();
 				$("#stations").append(x).accordion('destroy')
@@ -504,15 +495,18 @@ $(function() {
 			//we also need to remove this title from the select option thingy in the add_station_dialog box
 			//this will pass in the name of the station to a function to remove that specific option
 			//from a select box in the section dialog box.
-			removeStationOption($(this).parent().parent().find('a').text());
+			removeOption("station",$(this).parent().parent().find('a').text());
 			
 		});
 
-		//function removeTabOption(part,tab_name)
-		function removeStationOption(station_name)
+		//This can remove generic options from the dialog boxes...
+		//mainly used for removing stations and sections from the dialog
+		//select option.
+		function removeOption(option_type,option_name)
 		{
-			$("#station_title_choice option[value=\"" + station_name +"\"]").remove();
+			$("#"+ option_type +"_title_choice option[value=\"" + option_name +"\"]").remove();
 		}
+
 
 		//This is to disable the enter key from submitting the form
 		//to the server...this would be bad...
@@ -536,6 +530,18 @@ $(function() {
 			}
 		});
 
+
+		//This is to disable the enter key from submitting the form
+		//to the server...this would be bad...
+		//button eq 0 is the enter button
+		$("#add_widget_dialog").keypress(function (event) {
+			if (event.keyCode == 13) {
+				event.preventDefault();
+				$(this).parent()
+				   .find("button:eq(0)").trigger("click");
+			}
+		});
+
 		
 		// modal dialog init: custom buttons and a "close" callback reseting the form inside
 		//eventually, you should create a function handler that manages 
@@ -545,10 +551,11 @@ $(function() {
 			autoOpen: false,
 			modal: true,
 			height:400,
+			width:600,
 			buttons: {
 				Add: function() {
 					//do some basic validation
-					var errors_list = isValidSection($("#station_title").val(),"station");
+					var errors_list = isValid($("#station_title").val(),"station");
 					//if we have errors, send errors_list into addErrors(...)
 					if(errors_list.length > 0)
 					{
@@ -587,9 +594,10 @@ $(function() {
 			autoOpen: false,
 			modal: true,
 			height:400,
+			width:600,
 			buttons: {
 				Add: function() {
-					var errors_list = isValidSection($("#section_title").val(),"section");
+					var errors_list = isValid($("#section_title").val(),"section",$("#station_title_choice option:selected").val());
 					//if we have errors, send errors_list into addErrors(...)
 					if(errors_list.length > 0)
 					{
@@ -623,6 +631,8 @@ $(function() {
 		//and connect the tabs as sortable items.
 		function addSection(part,station_name)
 		{
+			$("#add_section_dialog #section_title_choice").append("<option value= \"" + part + "\">"+ part +"</option>");
+			$("#add_widget_dialog #section_title_choice").append("<option value= \"" + part + "\">"+ part +"</option>");
 			var $section_tabs = $( "#station_" + station_name +" #sections").tabs({
 				tabTemplate:"<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close'>Remove Tab</span></li>",
 				add: function( event, ui ) {
@@ -658,21 +668,16 @@ $(function() {
 			$(this).parent().remove();
 		});
 
-		//we need to fix this shizzz...
-		// close icon: removing the tab on click
-		// note: closable tabs gonna be an option in the future - see http://dev.jqueryui.com/ticket/3924
-		//this is not work...we need to remedy this
-		/*$( "#sections span.ui-icon-close" ).live( "click", function() {
-			alert("Hey");
-			var index = $( "li", $tabs ).index( $( this ).parent() );
-			$tabs.tabs( "remove", index );
-		});*/
 
+		//somehow I need to get the name of the station from the #station_Name div
+		//and then pass it into the tabs.tabs(remove) method to remove that tab...
+		//you will also need to remove that section from the overall tab list.
 		$( "#sections span.ui-icon-close" ).live( "click", function() {
-			//var index = $( "li", $section_tabs ).index( $( this ).parent() );
-			//var tab_name = $( "li a", $section_tabs ).text();
-			//$section_tabs.tabs( "remove", index );
-			alert("TBD Remove sections");
+			var station_name = "#" + $(this).parent().parent().parent().parent().attr('id');
+			var index = $( "li", $(station_name) ).index( $( this ).parent() );
+			$( station_name + " #sections").tabs( "remove", index );
+			//remove from all option lists:
+			removeOption("section",$(this).parent().find('a').text());
 		});
 
 
@@ -736,6 +741,7 @@ $(function() {
 		$( "#add_widget_button" )
 			.button({ icons: { primary: "ui-icon-gear" }})
 			.click(function() {
+				populateWidgetDialogList(widgets);
 				$add_widget_dialog.dialog( "open" );
 		});
 		
