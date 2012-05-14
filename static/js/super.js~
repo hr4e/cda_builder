@@ -63,6 +63,8 @@ $(function() {
 			//do this we need to go through each field and the widget
 			//and append that field into the preview div...
 			//we need to use the .create method...
+			//this is a farking disaster...you need to change this to be more 
+			//generic
 			for(var i =0; i < widgets.length; i++)
 			{
 				if (widgets[i].the_name === $("#widget_title_choice option:selected").html())

@@ -1,0 +1,31 @@
+
+<h3>Basic Clinic Settings</h3>
+<div class ="clinic_settings_tabs">
+	<ul>
+		<li><a href="#tabs-bas">Basic Settings</a></li>
+		<li><a href="#tabs-meds">Medications</a></li>
+		<li><a href="#tabs-vacs">Vaccinations</a></li>
+		<li><a href="#tabs-imms">Immunizations</a></li>
+		<li><a href="#tabs-langs">Languages</a></li>
+	</ul>
+	<div id="tabs-bas">
+		<p>Put your basic settings forms in here.</p>
+	</div>
+	<div id="tabs-meds">
+		<p>Use dummy lists for all of these now...I will provide better lists later.</p>
+		<p>You might want to create a medication object...but only if you want<p>
+		<p>IE: function Medication(name,code){this.name = name, this.code = code}; (syntax might be a little off).</p>
+		<p>Medication manager</p>
+	</div>
+	<div id="tabs-vacs">
+		<p>Vaccination Manager</p>
+	</div>
+	<div id="tabs-imms">
+		<p>Immunizations Manager</p>
+	</div>
+	<div id="tabs-langs">
+		<p>Languages Manager</p>
+	</div>
+</div>
+
+

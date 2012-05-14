@@ -113,7 +113,7 @@
 				</fieldset>
 			</form>
 			<div class="widget_preview"><h3>Widget Title Preview</h3>
-				<div class = "r4 left">
+				<!--<div class = "r4 left">
 					<form>
 						<fieldset class="ui-helper-reset">
 							<label for="field_name">Field 1</label>
@@ -125,7 +125,7 @@
 					<ul>
 						<li>Name: output</li>
 					</ul>
-				</div>
+				</div>-->
 			</div>
 </div>
 
@@ -210,6 +210,8 @@
 
 
 
+<br class="clear" /><br class="clear" />
+{% include "clinic_settings.html" %}
 <br class="clear" /><br class="clear" /><br class="clear" /><br class="clear" />
 </section> 
 

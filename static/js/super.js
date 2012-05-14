@@ -8,7 +8,8 @@ $(function() {
 		//you will have to set this counter each time you come to this page.
 		//var widgets = new Array();
 		//widgets[0] = new Widget("Demo",new Array(),"Intake","Demographics");
-		
+		//get the clinic settings tabs ready for group
+		$(".clinic_settings_tabs").tabs();
 
 		function Widget(the_name,fields,station,section)
 		{
