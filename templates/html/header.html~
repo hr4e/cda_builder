@@ -11,8 +11,8 @@
     	<link rel="stylesheet" type="text/css" href="/static/css/super.css" />
 	<script type="text/javascript" src="/static/js/jquery.min.js"></script> 
 	<script type="text/javascript" src="/static/js/jquery-ui-1.8.18.custom.min.js"></script>
-	<script type="text/javascript" src="/static/js/jquery.ui.nestedSortable.js"></script>
 	<script type="text/javascript" src="/static/js/super.js"></script>
+	<script type="text/javascript" src="/static/js/patient_manager.js"></script>
 	<link type="text/css" href="/static/css/flick/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
 		
 </head>
